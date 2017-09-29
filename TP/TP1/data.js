@@ -1,14 +1,38 @@
-
-
-function readTextFile(file)
+function readFile(e)
 {
-	var file = evt.target.file; // Recupère le fichier listé par l'event
-	var reader = new FileReader();
 
-    var fs = require("fs"); // Récupère la librairie fs et la stocke dans la variable fs
-	var text = fs.readFileSync(file);
-	var textByLine = text.split("\n")/*.map(parseFloat());*/;
-	alert(textByLine);
+	var file = e.target.files[0];
+  if (!file)
+	{
+    return;
+  }
+
+	var reader = new FileReader();
+	reader.onload = function(e)
+	{
+		var data = e.target.result.split("\n");
+
+		var len = data.length-1;
+		var total_len = Math.pow(2,Math.ceil(Math.sqrt(len)));
+
+		var exp_data = []
+
+		for(var i = 0; i < len; i++)
+		{
+			exp_data[i] = parseInt(data[i], 10);
+		}
+
+		for(var i = len; i < total_len; i++)
+		{
+			exp_data[i] = 0;
+		}
+
+		console.log(exp_data);
+		main(exp_data);
+  };
+
+  reader.readAsText(file);
+
 }
 
 function EtapeDecomposition(data,taille)
@@ -77,14 +101,18 @@ function CalculErreur(data_o,data_r)
 	return erreur;
 }
 
+function main(donnees)
+{
+	var res = DecompositionTotale(donnees);
+	console.log(RecompositionTotale(res));
+	var compressed = AppliquerSeuil(res,1);
+	console.log(compressed);
+	var reco =RecompositionTotale(compressed);
+	console.log(reco);
+	console.log(CalculErreur(donnees,reco));
+}
+
+document.getElementById('file').addEventListener('change', readFile, false);
+
 //readTextFile("./file.txt");
 var donnees = [9,7,3,5];
-//alert(EtapeDecomposition(donnees, 8));
-var res = DecompositionTotale(donnees);
-console.log(RecompositionTotale(res));
-var compressed = AppliquerSeuil(res,1);
-console.log(compressed);
-var reco =RecompositionTotale(compressed);
-console.log(reco);
-console.log(CalculErreur(donnees,reco));
-
