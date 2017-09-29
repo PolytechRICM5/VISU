@@ -77,14 +77,38 @@ function CalculErreur(data_o,data_r)
 	return erreur;
 }
 
+function AppliquerValeurAbsolue(data,debut)
+{
+	for(var i = debut; i < data.length; i++)
+	{
+		data[i] = Math.abs(data[i]);
+	}
+	return data;
+}
+
+function AfficherHistogrammeCoeffDetail(data){
+	HISTO = document.getElementById('histo');
+	var trace = {
+	    x: AppliquerValeurAbsolue(data,1).slice(1),
+	    type: 'histogram',
+	  };
+	var final = [trace];
+	Plotly.newPlot(HISTO, final);
+}
+
 //readTextFile("./file.txt");
 var donnees = [9,7,3,5];
 //alert(EtapeDecomposition(donnees, 8));
 var res = DecompositionTotale(donnees);
 console.log(RecompositionTotale(res));
-var compressed = AppliquerSeuil(res,1);
+var compressed = AppliquerSeuil(res,0.8);
 console.log(compressed);
 var reco =RecompositionTotale(compressed);
 console.log(reco);
 console.log(CalculErreur(donnees,reco));
 
+AfficherHistogrammeCoeffDetail(res);
+
+/*Plotly.plot( HISTO, [{
+	y : res.slice(1) }], {
+	margin: { t: 0 } } );*/
