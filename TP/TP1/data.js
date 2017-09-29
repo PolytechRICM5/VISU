@@ -29,6 +29,7 @@ function readFile(e)
 
 		console.log(exp_data);
 		main(exp_data);
+		AfficherHistogrammeCoeffDetail(exp_data);
   };
 
   reader.readAsText(file);
@@ -116,3 +117,26 @@ document.getElementById('file').addEventListener('change', readFile, false);
 
 //readTextFile("./file.txt");
 var donnees = [9,7,3,5];
+
+function AppliquerValeurAbsolue(data,debut)
+{
+	for(var i = debut; i < data.length; i++)
+	{
+		data[i] = Math.abs(data[i]);
+	}
+	return data;
+}
+
+function AfficherHistogrammeCoeffDetail(data){
+	HISTO = document.getElementById('histo');
+	var trace = {
+	    x: AppliquerValeurAbsolue(data,1).slice(1),
+	    type: 'histogram',
+	  };
+	var final = [trace];
+	Plotly.newPlot(HISTO, final);
+}
+
+/*Plotly.plot( HISTO, [{
+	y : res.slice(1) }], {
+	margin: { t: 0 } } );*/
