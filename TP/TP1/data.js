@@ -29,7 +29,6 @@ function readFile(e)
 
 		console.log(exp_data);
 		main(exp_data);
-		AfficherHistogrammeCoeffDetail(exp_data);
   };
 
   reader.readAsText(file);
@@ -111,6 +110,12 @@ function main(donnees)
 	var reco =RecompositionTotale(compressed);
 	console.log(reco);
 	console.log(CalculErreur(donnees,reco));
+
+
+		AfficherHistogrammeCoeffDetail(compressed);
+		AfficherDonnees(donnees);
+		//AfficherDonnees(res,document.getElementById('compressed'));
+
 }
 
 document.getElementById('file').addEventListener('change', readFile, false);
@@ -135,6 +140,16 @@ function AfficherHistogrammeCoeffDetail(data){
 	  };
 	var final = [trace];
 	Plotly.newPlot(HISTO, final);
+}
+
+function AfficherDonnees(data){
+	ZONE = document.getElementById('data');
+	var trace = {
+	    x: data,
+	    type : 'scatter'
+	  };
+	var final = [trace];
+	Plotly.newPlot(ZONE, final);
 }
 
 /*Plotly.plot( HISTO, [{
