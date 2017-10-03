@@ -113,8 +113,8 @@ function main(donnees)
 
 
 		AfficherHistogrammeCoeffDetail(compressed);
-		AfficherDonnees(donnees);
-		//AfficherDonnees(res,document.getElementById('compressed'));
+		AfficherDonnees(donnees,'data');
+		AfficherDonnees(res,'compressed');
 
 }
 
@@ -142,14 +142,13 @@ function AfficherHistogrammeCoeffDetail(data){
 	Plotly.newPlot(HISTO, final);
 }
 
-function AfficherDonnees(data){
-	ZONE = document.getElementById('data');
+function AfficherDonnees(data,zone){
 	var trace = {
 	    x: data,
 	    type : 'scatter'
 	  };
 	var final = [trace];
-	Plotly.newPlot(ZONE, final);
+	Plotly.newPlot(zone, final);
 }
 
 /*Plotly.plot( HISTO, [{
