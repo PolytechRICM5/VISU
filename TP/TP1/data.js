@@ -104,17 +104,12 @@ function CalculErreur(data_o,data_r)
 function main(donnees)
 {
 	var res = DecompositionTotale(donnees);
-	console.log(RecompositionTotale(res));
-	var compressed = AppliquerSeuil(res,1);
-	console.log(compressed);
-	var reco =RecompositionTotale(compressed);
-	console.log(reco);
-	console.log(CalculErreur(donnees,reco));
-
-
-		AfficherHistogrammeCoeffDetail(compressed);
-		AfficherDonnees(donnees,'data');
-		AfficherDonnees(res,'compressed');
+	var seuil = AppliquerSeuil(res,1);
+	var compressed =RecompositionTotale(seuil);
+	console.log(CalculErreur(donnees,compressed));
+	
+	AfficherHistogrammeCoeffDetail(compressed);
+	AfficherDeuxDonnees(donnees,compressed,'data');
 
 }
 
@@ -144,10 +139,25 @@ function AfficherHistogrammeCoeffDetail(data){
 
 function AfficherDonnees(data,zone){
 	var trace = {
-	    x: data,
+	    y: data,
 	    type : 'scatter'
 	  };
 	var final = [trace];
+	Plotly.newPlot(zone, final);
+}
+
+function AfficherDeuxDonnees(data1, data2, zone){
+	var trace1 = {
+	    y: data1,
+	    type : 'scatter',
+	    mode : 'lines'
+	  };
+	var trace2 = {
+	    y: data2,
+	    type : 'scatter',
+	    mode : 'lines'
+	  };
+	var final = [trace1,trace2];
 	Plotly.newPlot(zone, final);
 }
 
