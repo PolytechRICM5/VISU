@@ -49,7 +49,7 @@ function funToArray(fun, range, len)
 		tab[i] = 0;
 	}
 
-	main(tab);
+	return tab;
 
 }
 
@@ -207,7 +207,8 @@ function AfficherDeuxDonnees(data1, data2, zone){
 	Plotly.newPlot(zone, final);
 }
 
-funToArray(Math.sin, 2*Math.PI, 128);
+data = funToArray(Math.sin, 2*Math.PI, 128);
+main(data, 0.1);
 
 /*Plotly.plot( HISTO, [{
 	y : res.slice(1) }], {
