@@ -117,28 +117,56 @@ function CalculErreur(data_o,data_r)
 
 function main(donnees)
 {
+	var compressed = AppliquerCompression(donnees,0.1);
 	var res = DecompositionTotale(donnees);
-	var seuil = AppliquerSeuil(res,1);
-	var compressed =RecompositionTotale(seuil);
+	console.log(donnees);
+	console.log(compressed);
 	console.log(CalculErreur(donnees,compressed));
 
+	CalculErreurs(donnees,0.01,0.5);
 	AfficherHistogrammeCoeffDetail(compressed);
 	AfficherDeuxDonnees(donnees,compressed,'data');
 
 }
 
+function AppliquerCompression(data,seuil){
+	return RecompositionTotale(
+			AppliquerSeuil(
+				DecompositionTotale(data),
+				seuil
+			)
+		);
+}
+
+function CalculErreurs(data,step,len){
+	var erreurs = [];
+	var axe = [];
+	for(var i = 0; i <=len; i = i+ step){
+		var compressed = AppliquerCompression(data,i);
+		erreurs = erreurs.concat([CalculErreur(data,compressed)]);
+		axe = axe.concat([i]);
+	}
+	var trace = {
+		x : axe,
+	    y: erreurs,
+	    type : 'scatter',
+	    mode : 'lines'
+	  };
+	var final = [trace];
+	Plotly.newPlot('err', final);
+}
+
 document.getElementById('file').addEventListener('change', readFile, false);
 
-//readTextFile("./file.txt");
-var donnees = [9,7,3,5];
 
 function AppliquerValeurAbsolue(data,debut)
 {
+	var res = [];
 	for(var i = debut; i < data.length; i++)
 	{
-		data[i] = Math.abs(data[i]);
+		res[i] = Math.abs(data[i]);
 	}
-	return data;
+	return res;
 }
 
 function AfficherHistogrammeCoeffDetail(data){
@@ -175,7 +203,7 @@ function AfficherDeuxDonnees(data1, data2, zone){
 	Plotly.newPlot(zone, final);
 }
 
-funToArray(Math.sin, 2*Math.PI, 168);
+funToArray(Math.sin, 2*Math.PI, 128);
 
 /*Plotly.plot( HISTO, [{
 	y : res.slice(1) }], {
