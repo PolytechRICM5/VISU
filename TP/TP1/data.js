@@ -13,7 +13,7 @@ function readFile(e)
 		var data = e.target.result.split("\n");
 
 		var len = data.length-1;
-		var total_len = Math.pow(2,Math.ceil(Math.sqrt(len)));
+		var pow2len = Math.pow(2,Math.ceil(Math.sqrt(len)));
 
 		var exp_data = []
 
@@ -22,7 +22,7 @@ function readFile(e)
 			exp_data[i] = parseInt(data[i], 10);
 		}
 
-		for(var i = len; i < total_len; i++)
+		for(var i = len; i < pow2len; i++)
 		{
 			exp_data[i] = 0;
 		}
@@ -32,6 +32,20 @@ function readFile(e)
   };
 
   reader.readAsText(file);
+
+}
+
+function funToArray(fun, range, len)
+{
+
+	var pow2len = Math.pow(2,Math.ceil(Math.sqrt(len)));
+	var tab = [];
+
+	for (var i = 0; i < len; i++) {
+		tab[i] = fun(i/(len/range));
+	}
+
+	main(tab);
 
 }
 
@@ -107,7 +121,7 @@ function main(donnees)
 	var seuil = AppliquerSeuil(res,1);
 	var compressed =RecompositionTotale(seuil);
 	console.log(CalculErreur(donnees,compressed));
-	
+
 	AfficherHistogrammeCoeffDetail(compressed);
 	AfficherDeuxDonnees(donnees,compressed,'data');
 
@@ -160,6 +174,8 @@ function AfficherDeuxDonnees(data1, data2, zone){
 	var final = [trace1,trace2];
 	Plotly.newPlot(zone, final);
 }
+
+funToArray(Math.sin, 2*Math.PI, 168);
 
 /*Plotly.plot( HISTO, [{
 	y : res.slice(1) }], {
