@@ -13,7 +13,7 @@ function readFile(e)
 		var data = e.target.result.split("\n");
 
 		var len = data.length-1;
-		var pow2len = Math.pow(2,Math.ceil(Math.sqrt(len)));
+		var pow2len = Math.pow( 2, Math.round( Math.log( len ) / Math.log( 2 ) ) );
 
 		var exp_data = []
 
@@ -38,11 +38,15 @@ function readFile(e)
 function funToArray(fun, range, len)
 {
 
-	var pow2len = Math.pow(2,Math.ceil(Math.sqrt(len)));
+	var pow2len = Math.pow( 2, Math.round( Math.log( len ) / Math.log( 2 ) ) );
 	var tab = [];
 
 	for (var i = 0; i < len; i++) {
 		tab[i] = fun(i/(len/range));
+	}
+
+	for (var i = len; i < pow2len; i++) {
+		tab[i] = 0;
 	}
 
 	main(tab);
