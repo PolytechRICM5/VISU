@@ -121,13 +121,13 @@ function CalculErreur(data_o,data_r)
 
 function main(donnees)
 {
-	var compressed = AppliquerCompression(donnees,0.1);
+	var compressed = AppliquerCompression(donnees,0.2);
 	var res = DecompositionTotale(donnees);
 	console.log(donnees);
 	console.log(compressed);
 	console.log(CalculErreur(donnees,compressed));
 
-	CalculErreurs(donnees,0.01,0.5);
+	CalculErreurs(donnees,0.01,1);
 	AfficherHistogrammeCoeffDetail(compressed);
 	AfficherDeuxDonnees(donnees,compressed,'data');
 
@@ -145,7 +145,7 @@ function AppliquerCompression(data,seuil){
 function CalculErreurs(data,step,len){
 	var erreurs = [];
 	var axe = [];
-	for(var i = 0; i <=len; i = i+ step){
+	for(var i = 0.0; i <=len; i = i + step){
 		var compressed = AppliquerCompression(data,i);
 		erreurs = erreurs.concat([CalculErreur(data,compressed)]);
 		axe = axe.concat([i]);
