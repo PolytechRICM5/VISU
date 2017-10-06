@@ -1,12 +1,12 @@
+// Lit une suite d'entiers dans un fichier.
+// non utilisé actuellement.
 function readFile(e)
 {
-
 	var file = e.target.files[0];
   if (!file)
 	{
     return;
   }
-
 	var reader = new FileReader();
 	reader.onload = function(e)
 	{
@@ -35,6 +35,10 @@ function readFile(e)
 
 }
 
+/**
+  Crée le tableau contenant les valeurs correspondant à la fonction fun
+  Dans l'intervalle [0,range] contenant exactement len valeurs.
+*/
 function funToArray(fun, range, len)
 {
 
@@ -52,6 +56,7 @@ function funToArray(fun, range, len)
 	return tab;
 
 }
+
 
 function EtapeDecomposition(data,taille)
 {
@@ -99,6 +104,9 @@ function RecompositionTotale(data)
 	return data;
 }
 
+/** 
+	Mets à 0 les valeurs de data inférieures au seuil donné
+*/
 function AppliquerSeuil(data,seuil)
 {
 	for(var i = 1; i < data.length; i++)
@@ -108,6 +116,10 @@ function AppliquerSeuil(data,seuil)
 	return data;
 }
 
+/**
+  Calcule l'erreur totale entre les deux tableaux donnés en entrée
+  Ceux ci doivent être de même taille !
+*/
 function CalculErreur(data_o,data_r)
 {
 	var erreur = 0;
@@ -119,13 +131,14 @@ function CalculErreur(data_o,data_r)
 	return erreur;
 }
 
+
 function main(donnees)
 {
 	var compressed = AppliquerCompression(donnees,0.2);
-	var res = DecompositionTotale(donnees);
+	/*var res = DecompositionTotale(donnees);
 	console.log(donnees);
 	console.log(compressed);
-	console.log(CalculErreur(donnees,compressed));
+	console.log(CalculErreur(donnees,compressed));*/
 
 	CalculErreurs(donnees,0.01,1);
 	AfficherHistogrammeCoeffDetail(compressed);
@@ -142,6 +155,11 @@ function AppliquerCompression(data,seuil){
 		);
 }
 
+/**
+	Calcule les erreurs pour les seuils correspondant à
+	tout les 'step' sur l'intervalle [0,len]
+	et affiche la courbe des erreurs correpondante
+*/
 function CalculErreurs(data,step,len){
 	var erreurs = [];
 	var axe = [];
@@ -207,9 +225,9 @@ function AfficherDeuxDonnees(data1, data2, zone){
 	Plotly.newPlot(zone, final);
 }
 
+// génére un tableu contenant un sinus
 data = funToArray(Math.sin, 2*Math.PI, 128);
+// Appelle le main avec un  seuil de 0.1
 main(data, 0.1);
 
-/*Plotly.plot( HISTO, [{
-	y : res.slice(1) }], {
-	margin: { t: 0 } } );*/
+
