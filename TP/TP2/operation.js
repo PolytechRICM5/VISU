@@ -34,8 +34,8 @@ function draw(data)
   ctx.moveTo(data[0][0], data[0][1]);
   for (var i in data) {
     ctx.lineTo(data[i][0], data[i][1]);
-    ctx.moveTo(data[i][0], data[i][1]);
   }
+  ctx.lineTo(data[0][0], data[0][1]);
   ctx.closePath();
   ctx.stroke();
 }
@@ -65,13 +65,19 @@ function main(data)
 }
 
 data = [];
-data[0] = [0,0];
-data[1] = [20,30];
-data[2] = [30,50];
-data[3] = [30,60];
+data[0] = [10,10];
+data[1] = [100,30];
+data[2] = [200,10];
+data[3] = [180,100];
+data[4] = [200,200];
+data[5] = [100,180];
+data[6] = [10,200];
+data[7] = [30,100];
 
 draw(data);
 document.getElementById('file').addEventListener('change', readFile, false);
+
+//draw(EtapeDecomposition(data,8));
 
 
 function EtapeDecomposition(data,taille){
@@ -105,6 +111,31 @@ function EtapeDecomposition(data,taille){
 	y[max][1] = ( data[2*i-2][1] - 3 * data[(2*i)-1][1] + 3 * data[2*i][1] - data[2*i+1][1]) / 4;
 */
 	return x.concat(y);
+}
+
+function EtapeRecomposition(data, taille){
+	var x = [];
+	var size = taille/2;
+	for( var i = 0; i < size - 1 ; i++)
+	{
+		x[2*i] = [
+			3 * ( data[i][0] + data[size+i][0]) / 4 + (data[i+1][0] - data[size+i+1][0]) / 4,
+			3 * ( data[i][1] + data[size+i][1]) / 4 + (data[i+1][1] - data[size+i+1][1]) / 4
+		];
+		x[2*i+1] = [
+			( data[i][0] + data[size+i][0]) / 4 + 3 * (data[i+1][0] - data[size+i+1][0]) / 4,
+			( data[i][1] + data[size+i][1]) / 4 + 3 * (data[i+1][1] - data[size+i+1][1]) / 4
+		];
+	}
+	x[taille-2] = [
+		3 * ( data[size-1][0] + data[taille-1][0]) / 4 + (data[0][0] - data[size][0]) / 4,
+		3 * ( data[size-1][1] + data[taille-1][1]) / 4 + (data[0][1] - data[size][1]) / 4
+	];
+	x[taille-1] = [
+		( data[size-1][0] + data[taille-1][0]) / 4 + 3 * (data[0][0] - data[size][0]) / 4,
+		( data[size-1][1] + data[taille-1][1]) / 4 + 3 * (data[0][1] - data[size][1]) / 4
+	];
+	return x;
 }
 
 console.log(EtapeDecomposition(data,4));
