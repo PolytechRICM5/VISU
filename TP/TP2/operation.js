@@ -25,19 +25,39 @@ function readFile(e)
 
 }
 
-function draw(data)
+function draw(data, nb_pts)
 {
+
+	var nb_pts = Math.min(nb_pts, data.length);
+
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   ctx.beginPath();
   ctx.moveTo(data[0][0], data[0][1]);
-  for (var i in data) {
+  for (var i = 0; i < nb_pts; i++)
+	{
     ctx.lineTo(data[i][0], data[i][1]);
   }
   ctx.lineTo(data[0][0], data[0][1]);
   ctx.closePath();
   ctx.stroke();
+}
+
+function rotate(data)
+{
+
+	var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+
+	for(var i = 0; i < data.length; i++)
+	{
+		data[i][0] = ctx.canvas.width - data[i][0];
+		data[i][1] = ctx.canvas.height - data[i][1];
+	}
+
+	return data;
+
 }
 
 function scale(data)
@@ -61,7 +81,8 @@ function scale(data)
 function main(data)
 {
   data = scale(data);
-  draw(data);
+	data = rotate(data);
+  draw(data, 20000);
 }
 
 data = [];
