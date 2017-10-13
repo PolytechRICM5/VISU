@@ -17,7 +17,9 @@ function readFile(e)
 			data[i] = data[i].split(" ");
 		}
 
-		main(data);
+		data.splice(-1);
+
+    main(data);
 
 	};
 
@@ -82,9 +84,9 @@ function main(data)
 {
 	data = scale(data);
 	data = rotate(data);
-	console.log(data.length);
-	data = EtapeDecomposition(data, data.length-1);
-	draw(data, (data.length-1)/2);
+	//data = EtapeDecomposition(data,data.length/2);
+	data = DesEtapesDecomposition(data, 4);
+  draw(data[0], data[1]);
 }
 
 data = [];
@@ -177,4 +179,3 @@ function EtapeRecomposition(data, taille){
 	];
 	return x;
 }
-
