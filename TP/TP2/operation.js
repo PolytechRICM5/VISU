@@ -97,8 +97,9 @@ function main(data)
 {
 	data = scale(data);
 	data = rotate(data);
-	[data,size] = DesEtapesDecomposition(data, 1);
+	[data,size] = DesEtapesDecomposition(data, 4);
 	data = seuil(data, 10);
+	console.log(data);
   draw(data, size);
     /*
 	console.log(data.length);
