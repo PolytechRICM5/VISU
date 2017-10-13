@@ -80,13 +80,28 @@ function scale(data)
 
 }
 
+function seuil(data, seuil)
+{
+	for (var i = 3; i < data.length; i++)
+	{
+		if(Math.sqrt(Math.pow(data[i][0],2) + Math.pow(data[i][1], 2)) <= seuil)
+		{
+			data[i][0] = 0.0;
+			data[i][1] = 0.0;
+		}
+	}
+	return data;
+}
+
 function main(data)
 {
 	data = scale(data);
 	data = rotate(data);
 	//data = EtapeDecomposition(data,data.length/2);
 	data = DesEtapesDecomposition(data, 4);
-  draw(data[0], data[1]);
+	data = seuil(data, 10);
+	console.log(data);
+	draw(data[0], data[1]);
 }
 
 data = [];
