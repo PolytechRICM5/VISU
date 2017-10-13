@@ -145,6 +145,14 @@ function DesEtapesDecomposition(data, steps){
 	return [res,size];
 }
 
+function DecompositionTotale(data){
+	var res = data;
+	for(var i = data.length; i > 2; i = i / 2) {
+		res = EtapeDecomposition(res,i);
+	}
+	return [res,i];
+}
+
 function EtapeRecomposition(data, taille){
 	var x = [];
 	var size = taille/2;
