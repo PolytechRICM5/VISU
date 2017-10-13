@@ -17,6 +17,8 @@ function readFile(e)
       data[i] = data[i].split(" ");
     }
 
+		data.splice(-1);
+
     main(data);
 
   };
@@ -82,6 +84,7 @@ function main(data)
 {
   data = scale(data);
 	data = rotate(data);
+	//data = EtapeDecomposition(data,data.length/2);
   draw(data, 20000);
 }
 
