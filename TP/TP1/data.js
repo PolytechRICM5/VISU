@@ -246,7 +246,7 @@ function main(donnees, seuil)
 	MultipleRecompoSeuil(donnees,0.2,1);
 	AfficherHistogrammeCoeffDetail(compressed);
 	AfficherDeuxDonnees(donnees,compressed,'data');
-
+	
 }
 
 // génére un tableu contenant un sinus
