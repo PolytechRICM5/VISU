@@ -28,7 +28,7 @@ function readFile(e)
 		}
 
 		console.log(exp_data);
-		main(exp_data);
+		main(exp_data, 2);
   };
 
   reader.readAsText(file);
@@ -104,7 +104,7 @@ function RecompositionTotale(data)
 	return data;
 }
 
-/** 
+/**
 	Mets à 0 les valeurs de data inférieures au seuil donné
 */
 function AppliquerSeuil(data,seuil)
@@ -131,20 +131,6 @@ function CalculErreur(data_o,data_r)
 	return erreur;
 }
 
-
-function main(donnees)
-{
-	var compressed = AppliquerCompression(donnees,0.2);
-	/*var res = DecompositionTotale(donnees);
-	console.log(donnees);
-	console.log(compressed);
-	console.log(CalculErreur(donnees,compressed));*/
-
-	CalculErreurs(donnees,0.01,1);
-	AfficherHistogrammeCoeffDetail(compressed);
-	AfficherDeuxDonnees(donnees,compressed,'data');
-
-}
 
 function AppliquerCompression(data,seuil){
 	return RecompositionTotale(
@@ -178,8 +164,31 @@ function CalculErreurs(data,step,len){
 	Plotly.newPlot('err', final);
 }
 
+function MultipleRecompoSeuil(data,step,max_seuil){
+	var compressed = [];
+	var trace = [];
+	for(var i = 0.0; i <=max_seuil; i = i + step){
+		compressed[i] = AppliquerCompression(data, i);
+	}
+	for(var i = 0.0; i <= max_seuil; i = i + step) {
+		trace.push( {
+			y: compressed[i],
+			type : 'scatter',
+			mode : 'lines'
+		});
+	}
+	console.log(trace);
+	Plotly.newPlot('multi', trace);
+}
+
 document.getElementById('file').addEventListener('change', readFile, false);
 
+/*
+document.getElementById('funToUse').addEventListener('change', function() {
+	data = funToArray(document.getElementById('funToUse').value, document.getElementById('range').value);
+	main(data, document.getElementById('seuil').value);
+});
+*/
 
 function AppliquerValeurAbsolue(data,debut)
 {
@@ -225,9 +234,22 @@ function AfficherDeuxDonnees(data1, data2, zone){
 	Plotly.newPlot(zone, final);
 }
 
+function main(donnees, seuil)
+{
+	var compressed = AppliquerCompression(donnees,seuil);
+	/*var res = DecompositionTotale(donnees);
+	console.log(donnees);
+	console.log(compressed);
+	console.log(CalculErreur(donnees,compressed));*/
+
+	CalculErreurs(donnees,0.01,1);
+	MultipleRecompoSeuil(donnees,0.2,1);
+	AfficherHistogrammeCoeffDetail(compressed);
+	AfficherDeuxDonnees(donnees,compressed,'data');
+
+}
+
 // génére un tableu contenant un sinus
 data = funToArray(Math.sin, 2*Math.PI, 128);
 // Appelle le main avec un  seuil de 0.1
 main(data, 0.1);
-
-
