@@ -97,11 +97,19 @@ function main(data)
 {
 	data = scale(data);
 	data = rotate(data);
-	//data = EtapeDecomposition(data,data.length/2);
-	data = DesEtapesDecomposition(data, 4);
+	[data,size] = DesEtapesDecomposition(data, 1);
 	data = seuil(data, 10);
-	console.log(data);
-	draw(data[0], data[1]);
+  draw(data, size);
+    /*
+	console.log(data.length);
+	res = RecompositionTotale(data, size*2);
+	draw(res,res.length);
+	console.log(res.length);*/
+  	/*draw(
+  		EtapeRecomposition(
+  			EtapeDecomposition(data,data.length)
+  			,data.length),
+  		data.length);*/
 }
 
 data = [];
@@ -153,13 +161,23 @@ function EtapeDecomposition(data,taille){
 }
 
 function DesEtapesDecomposition(data, steps){
-	var res = data;
+	var base = data;
 	var size = data.length;
 	for(var i = 0; i < steps; i++) {
-		res = EtapeDecomposition(res,size);
+		if(size < 2) break;
+		var res = EtapeDecomposition(base,size);
+		base = res.concat(base.slice(size));
 		size = size/2;
 	}
-	return [res,size];
+	return [base,size];
+}
+
+function DecompositionTotale(data){
+	var res = data;
+	for(var i = data.length; i > 2; i = i / 2) {
+		res = EtapeDecomposition(res,i);
+	}
+	return [res,i];
 }
 
 function EtapeRecomposition(data, taille){
@@ -168,21 +186,34 @@ function EtapeRecomposition(data, taille){
 	for( var i = 0; i < size - 1 ; i++)
 	{
 		x[2*i] = [
-		3 * ( data[i][0] + data[size+i][0]) / 4 + (data[i+1][0] - data[size+i+1][0]) / 4,
-		3 * ( data[i][1] + data[size+i][1]) / 4 + (data[i+1][1] - data[size+i+1][1]) / 4
+			3 * ( data[i][0] + data[size+i][0]) / 4 + (data[i+1][0] - data[size+i+1][0]) / 4,
+			3 * ( data[i][1] + data[size+i][1]) / 4 + (data[i+1][1] - data[size+i+1][1]) / 4
 		];
 		x[2*i+1] = [
-		( data[i][0] + data[size+i][0]) / 4 + 3 * (data[i+1][0] - data[size+i+1][0]) / 4,
-		( data[i][1] + data[size+i][1]) / 4 + 3 * (data[i+1][1] - data[size+i+1][1]) / 4
+			( data[i][0] + data[size+i][0]) / 4 + 3 * (data[i+1][0] - data[size+i+1][0]) / 4,
+			( data[i][1] + data[size+i][1]) / 4 + 3 * (data[i+1][1] - data[size+i+1][1]) / 4
 		];
 	}
 	x[taille-2] = [
-	3 * ( data[size-1][0] + data[taille-1][0]) / 4 + (data[0][0] - data[size][0]) / 4,
-	3 * ( data[size-1][1] + data[taille-1][1]) / 4 + (data[0][1] - data[size][1]) / 4
+		3 * ( data[size-1][0] + data[taille-1][0]) / 4 + (data[0][0] - data[size][0]) / 4,
+		3 * ( data[size-1][1] + data[taille-1][1]) / 4 + (data[0][1] - data[size][1]) / 4
 	];
 	x[taille-1] = [
-	( data[size-1][0] + data[taille-1][0]) / 4 + 3 * (data[0][0] - data[size][0]) / 4,
-	( data[size-1][1] + data[taille-1][1]) / 4 + 3 * (data[0][1] - data[size][1]) / 4
+		( data[size-1][0] + data[taille-1][0]) / 4 + 3 * (data[0][0] - data[size][0]) / 4,
+		( data[size-1][1] + data[taille-1][1]) / 4 + 3 * (data[0][1] - data[size][1]) / 4
 	];
 	return x;
+}
+
+function RecompositionTotale(data, start) {
+	var base = data;
+	var taille = data.length;
+	console.log(start);
+	for(var i = start; i <= taille; i = i * 2){
+		var res = EtapeRecomposition(base,i);
+		base = res.concat(base.slice(i));
+		console.log(i);
+		console.log(base);
+	}
+	return res;
 }
