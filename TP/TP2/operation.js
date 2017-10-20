@@ -1,37 +1,26 @@
 function readFile(e)
 {
-
 	var file = e.target.files[0];
 	if (!file)
 	{
 		return;
 	}
-
 	var reader = new FileReader();
 	reader.onload = function(e)
 	{
-
 		var data = e.target.result.split("\n");
-
 		for (var i = 0; i < data.length; i++) {
 			data[i] = data[i].split(" ");
 		}
-
 		data.splice(-1);
-
     main(data);
-
 	};
-
 	reader.readAsText(file);
-
 }
 
 function draw(data, nb_pts)
 {
-
 	var nb_pts = Math.min(nb_pts, data.length);
-
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -48,7 +37,6 @@ function draw(data, nb_pts)
 
 function rotate(data)
 {
-
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
 
@@ -64,7 +52,6 @@ function rotate(data)
 
 function scale(data)
 {
-
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
 	var width = ctx.canvas.width;
@@ -72,45 +59,57 @@ function scale(data)
 
 	for (i in data)
 	{
-		data[i][0] = data[i][0] * 30;
-		data[i][1] = data[i][1] * 30;
+		data[i][0] = data[i][0] * 25;
+		data[i][1] = data[i][1] * 25;
 	}
 
 	return data
+}
 
+function translate(data)
+{
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var width = ctx.canvas.width;
+    var height = ctx.canvas.height;
+
+    for (i in data)
+    {
+        data[i][0] = data[i][0] + 50;
+        data[i][1] = data[i][1] + 50;
+    }
+
+    return data
+}
+
+function norme(point){
+	return Math.sqrt(Math.pow(point[0],2) + Math.pow(point[1], 2);
 }
 
 function seuil(data, seuil)
 {
-	for (var i = 3; i < data.length; i++)
+	var data2 = data;
+	for (var i = 3; i < data2.length; i++)
 	{
-		if(Math.sqrt(Math.pow(data[i][0],2) + Math.pow(data[i][1], 2)) <= seuil)
+		if(Math.sqrt(Math.pow(data2[i][0],2) + Math.pow(data2[i][1], 2)) <= seuil)
 		{
-			data[i][0] = 0.0;
-			data[i][1] = 0.0;
+			data2[i][0] = 0.0;
+			data2[i][1] = 0.0;
 		}
 	}
-	return data;
+	return data2;
 }
 
 function main(data)
 {
 	data = scale(data);
+	data = translate(data);
 	data = rotate(data);
-	[data,size] = DesEtapesDecomposition(data, 4);
-	data = seuil(data, 10);
+	[res,size] = DecompositionTotale(data);
+	var data2 = seuil(res,256);
+	data3 = RecompositionTotale(data2,size*2);
 	console.log(data);
-  draw(data, size);
-    /*
-	console.log(data.length);
-	res = RecompositionTotale(data, size*2);
-	draw(res,res.length);
-	console.log(res.length);*/
-  	/*draw(
-  		EtapeRecomposition(
-  			EtapeDecomposition(data,data.length)
-  			,data.length),
-  		data.length);*/
+  	draw(data3, data3.length);
 }
 
 data = [];
@@ -165,7 +164,7 @@ function DesEtapesDecomposition(data, steps){
 	var base = data;
 	var size = data.length;
 	for(var i = 0; i < steps; i++) {
-		if(size < 2) break;
+		if(size <= 2) break;
 		var res = EtapeDecomposition(base,size);
 		base = res.concat(base.slice(size));
 		size = size/2;
@@ -174,13 +173,18 @@ function DesEtapesDecomposition(data, steps){
 }
 
 function DecompositionTotale(data){
-	var res = data;
-	for(var i = data.length; i > 2; i = i / 2) {
-		res = EtapeDecomposition(res,i);
+	var base = data;
+	for(var i = data.length; i > 4; i = i / 2) {
+		var res = EtapeDecomposition(base,i);
+        base = res.concat(base.slice(i));
+        console.log(base);
 	}
-	return [res,i];
+	return [base,i];
 }
 
+/*
+@taille : la taille des donnée + le détail à prendre en compte.
+ */
 function EtapeRecomposition(data, taille){
 	var x = [];
 	var size = taille/2;
@@ -206,12 +210,16 @@ function EtapeRecomposition(data, taille){
 	return x;
 }
 
+/*
+@start : la taille des points constituant la figure décomposée (en général 4 points)
+		+ les coefficients de détail associés
+ */
 function RecompositionTotale(data, start) {
 	var base = data;
 	var taille = data.length;
 	console.log(start);
 	for(var i = start; i <= taille; i = i * 2){
-		var res = EtapeRecomposition(base,i);
+		var res  = EtapeRecomposition(base,i);
 		base = res.concat(base.slice(i));
 		console.log(i);
 		console.log(base);
