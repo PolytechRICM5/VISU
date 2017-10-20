@@ -243,13 +243,13 @@ function main(donnees, seuil)
 	console.log(CalculErreur(donnees,compressed));*/
 
 	CalculErreurs(donnees,0.01,1);
-	MultipleRecompoSeuil(donnees,0.2,1);
+	MultipleRecompoSeuil(donnees,2,10);
 	AfficherHistogrammeCoeffDetail(compressed);
 	AfficherDeuxDonnees(donnees,compressed,'data');
-	
+
 }
 
 // génére un tableu contenant un sinus
 data = funToArray(Math.sin, 2*Math.PI, 128);
 // Appelle le main avec un  seuil de 0.1
-main(data, 0.1);
+main(data, 5);

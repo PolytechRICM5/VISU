@@ -97,7 +97,8 @@ function main(data)
 {
 	data = scale(data);
 	data = rotate(data);
-	[data,size] = DesEtapesDecomposition(data, 4);
+	data = DecompositionTotale(data);
+	//[data,size] = DesEtapesDecomposition(data, 4);
 	data = seuil(data, 10);
 	console.log(data);
   draw(data, size);
@@ -217,4 +218,14 @@ function RecompositionTotale(data, start) {
 		console.log(base);
 	}
 	return res;
+}
+
+function calculErreur(data, data_err)
+{
+	var erreur = 0;
+	for (var i = 0; i < data.length; i++) {
+		erreur += Math.pow(distance(data[i], data_err[i]), 2);
+	}
+	erreur /= data.length;
+	return erreur;
 }
