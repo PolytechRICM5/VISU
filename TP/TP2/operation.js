@@ -162,7 +162,7 @@ function main(data, s)
 	console.log(res2);
 	res2[3] = [150, 100];
 	data3 = RecompositionTotale(res2,size*2);
-	draw(data,data.length);
+	drawc(data,data.length,"canvas1");
   	drawc(res,size,"canvas2");
     drawc(res2,size,"canvas3");
     drawc(data3,data3.length,"canvas4");
