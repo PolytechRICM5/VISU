@@ -112,6 +112,10 @@ function norme(point)
 	return Math.sqrt(Math.pow(point[0],2) + Math.pow(point[1], 2));
 }
 
+function distance(point1,point2) {
+	return Math.sqrt( Math.pow((point1[0]-point2[0]),2) + Math.pow((point1[1]-point2[1]),2));
+}
+
 function seuil(data, seuil)
 {
 	var data2 = data;
