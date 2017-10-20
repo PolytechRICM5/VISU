@@ -82,8 +82,9 @@ function translate(data)
     return data
 }
 
-function norme(point){
-	return Math.sqrt(Math.pow(point[0],2) + Math.pow(point[1], 2);
+function norme(point)
+{
+	return Math.sqrt(Math.pow(point[0],2) + Math.pow(point[1], 2));
 }
 
 function seuil(data, seuil)
