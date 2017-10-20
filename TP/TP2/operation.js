@@ -1,3 +1,13 @@
+var init_data = [];
+
+/* Listeners sur les inputs */
+var i_seuil = document.getElementById("seuil");
+i_seuil.addEventListener('change', function()
+{
+	main(copyarray(init_data), i_seuil.value);
+});
+
+/* Fonctions */
 function readFile(e)
 {
 	var file = e.target.files[0];
@@ -8,14 +18,29 @@ function readFile(e)
 	var reader = new FileReader();
 	reader.onload = function(e)
 	{
-		var data = e.target.result.split("\n");
-		for (var i = 0; i < data.length; i++) {
-			data[i] = data[i].split(" ");
+		init_data = e.target.result.split("\n");
+		for (var i = 0; i < init_data.length; i++) {
+			init_data[i] = init_data[i].split(" ");
 		}
-		data.splice(-1);
-    main(data);
+		init_data.splice(-1);
+
+		var data = copyarray(init_data);
+
+    main(data, i_seuil.value);
 	};
 	reader.readAsText(file);
+}
+
+function copyarray(init_data)
+{
+	var data = [];
+	for (var i = 0; i < init_data.length; i++)
+	{
+		data[i] = [];
+		data[i][0] = init_data[i][0];
+		data[i][1] = init_data[i][1];
+	}
+	return data;
 }
 
 function draw(data, nb_pts)
@@ -101,13 +126,13 @@ function seuil(data, seuil)
 	return data2;
 }
 
-function main(data)
+function main(data, s)
 {
 	data = scale(data);
 	data = translate(data);
 	data = rotate(data);
 	[res,size] = DecompositionTotale(data);
-	var data2 = seuil(res,256);
+	var data2 = seuil(res,s);
 	data3 = RecompositionTotale(data2,size*2);
 	console.log(data);
   	draw(data3, data3.length);
