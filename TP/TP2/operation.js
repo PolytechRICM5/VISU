@@ -82,8 +82,9 @@ function translate(data)
     return data
 }
 
-function norme(point){
-    return Math.sqrt(Math.pow(point[0],2) + Math.pow(point[1], 2);
+function norme(point)
+{
+	return Math.sqrt(Math.pow(point[0],2) + Math.pow(point[1], 2));
 }
 
 function distance(point1,point2) {
@@ -229,4 +230,14 @@ function RecompositionTotale(data, start) {
 		console.log(base);
 	}
 	return res;
+}
+
+function calculErreur(data, data_err)
+{
+	var erreur = 0;
+	for (var i = 0; i < data.length; i++) {
+		erreur += Math.pow(distance(data[i], data_err[i]), 2);
+	}
+	erreur /= data.length;
+	return erreur;
 }
