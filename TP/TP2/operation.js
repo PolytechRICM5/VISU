@@ -135,7 +135,7 @@ function distance(point1,point2) {
 
 function seuil(data, seuil)
 {
-	var data2 = data;
+	var data2 = data.slice();
 	for (var i = 3; i < data2.length; i++)
 	{
 		if(Math.sqrt(Math.pow(data2[i][0],2) + Math.pow(data2[i][1], 2)) <= seuil)
@@ -155,17 +155,17 @@ function main(data, s)
 	[res,size] = DecompositionTotale(data);
 	var data2 = seuil(res,s);
 	data3 = RecompositionTotale(data2,size*2);
-	console.log(data);
   	draw(data3, data3.length);
-	//var data2 = seuil(res,10);
+
+    [res,size] = DecompositionTotale(data);
 	var res2 = res.slice();
-	console.log(res2);
 	res2[3] = [150, 100];
-	data3 = RecompositionTotale(res2,size*2);
+	var data4 = RecompositionTotale(res2,size*2);
 	drawc(data,data.length,"canvas1");
   	drawc(res,size,"canvas2");
     drawc(res2,size,"canvas3");
-    drawc(data3,data3.length,"canvas4");
+    drawc(data4,data4.length,"canvas4");
+
   	CalculErreurs(data,1,200);
 }
 
@@ -273,7 +273,6 @@ function EtapeRecomposition(data, taille){
 function RecompositionTotale(data, start) {
 	var base = data;
 	var taille = data.length;
-	console.log(start);
 	for(var i = start; i <= taille; i = i * 2){
 		var res  = EtapeRecomposition(base,i);
 		base = res.concat(base.slice(i));
