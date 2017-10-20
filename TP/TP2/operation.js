@@ -105,15 +105,9 @@ function main(data)
 	data = scale(data);
 	data = translate(data);
 	data = rotate(data);
-<<<<<<< HEAD
-	data = DecompositionTotale(data);
-	//[data,size] = DesEtapesDecomposition(data, 4);
-	data = seuil(data, 10);
-=======
 	[res,size] = DecompositionTotale(data);
 	var data2 = seuil(res,256);
 	data3 = RecompositionTotale(data2,size*2);
->>>>>>> c444a9ac6d2c440d7fb1f5d805ece7d78ff7d9b9
 	console.log(data);
   	draw(data3, data3.length);
 }
