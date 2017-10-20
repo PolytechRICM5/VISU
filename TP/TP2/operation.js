@@ -35,6 +35,23 @@ function draw(data, nb_pts)
 	ctx.stroke();
 }
 
+function drawc(data, nb_pts, canvas)
+{
+    var nb_pts = Math.min(nb_pts, data.length);
+    var canvas = document.getElementById(canvas);
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.beginPath();
+    ctx.moveTo(data[0][0], data[0][1]);
+    for (var i = 0; i < nb_pts; i++)
+    {
+        ctx.lineTo(data[i][0], data[i][1]);
+    }
+    ctx.lineTo(data[0][0], data[0][1]);
+    ctx.closePath();
+    ctx.stroke();
+}
+
 function rotate(data)
 {
 	var canvas = document.getElementById("canvas");
@@ -59,8 +76,8 @@ function scale(data)
 
 	for (i in data)
 	{
-		data[i][0] = data[i][0] * 25;
-		data[i][1] = data[i][1] * 25;
+		data[i][0] = data[i][0] * 20;
+		data[i][1] = data[i][1] * 20;
 	}
 
 	return data
@@ -111,10 +128,16 @@ function main(data)
 	data = translate(data);
 	data = rotate(data);
 	[res,size] = DecompositionTotale(data);
-	var data2 = seuil(res,256);
-	data3 = RecompositionTotale(data2,size*2);
-	console.log(data);
-  	draw(data3, data3.length);
+	//var data2 = seuil(res,10);
+	var res2 = res.slice();
+	console.log(res2);
+	res2[3] = [150, 100];
+	data3 = RecompositionTotale(res2,size*2);
+	draw(data,data.length);
+  	drawc(res,size,"canvas2");
+    drawc(res2,size,"canvas3");
+    drawc(data3,data3.length,"canvas4");
+  	CalculErreurs(data,1,200);
 }
 
 data = [];
@@ -182,7 +205,6 @@ function DecompositionTotale(data){
 	for(var i = data.length; i > 4; i = i / 2) {
 		var res = EtapeDecomposition(base,i);
         base = res.concat(base.slice(i));
-        console.log(base);
 	}
 	return [base,i];
 }
@@ -226,8 +248,6 @@ function RecompositionTotale(data, start) {
 	for(var i = start; i <= taille; i = i * 2){
 		var res  = EtapeRecomposition(base,i);
 		base = res.concat(base.slice(i));
-		console.log(i);
-		console.log(base);
 	}
 	return res;
 }
@@ -240,4 +260,29 @@ function calculErreur(data, data_err)
 	}
 	erreur /= data.length;
 	return erreur;
+}
+
+/**
+ Calcule les erreurs pour les seuils correspondant à
+ tout les 'step' sur l'intervalle [0,len]
+ et affiche la courbe des erreurs correpondante
+ */
+function CalculErreurs(data,step,len){
+    var erreurs = [];
+    var axe = [];
+    for(var i = 0.0; i <=len; i = i + step){
+        [decompose,taille] = DecompositionTotale(data);
+        var seuille = seuil(decompose,i);
+        var res = RecompositionTotale(seuille,taille*2);
+        erreurs = erreurs.concat([calculErreur(data,res)]);
+        axe = axe.concat([i]);
+    }
+    var trace = {
+        x : axe,
+        y : erreurs,
+        type : 'scatter',
+        mode : 'lines'
+    };
+    var final = [trace];
+    Plotly.newPlot('erreur', final);
 }
