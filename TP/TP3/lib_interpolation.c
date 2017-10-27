@@ -1,4 +1,5 @@
 #include "lib_interpolation.h"
+#include <math.h>
 
 /* Distance Euclidienne entre deux points
  */
