@@ -45,8 +45,8 @@ float** interpolation(int width, int height, Xi *l, int N){
 	{
 		for(int y = 0; y < width; y++)
 		{
-			float f = F(x/height,y/width,l,N);
-			printf("%f\t%f\t%f\n",x/height,y/width,f);
+			float f = F((float)x/(float)height,(float)y/(float)width,l,N);
+			printf("%f\t%f\t%f\n",(float)x/(float)height,(float)y/(float)width,f);
 			res[x][y] = f;
 		}
 	}
