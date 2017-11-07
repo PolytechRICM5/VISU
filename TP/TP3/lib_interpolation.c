@@ -36,6 +36,18 @@ float F(float x, float y, Xi *l, int N)
 	return res;
 }
 
+float Hk(float x, float y, Xi *l, int k, float R)
+{
+	float d = distance(x,y,l[k].x,l[k].y);
+	return sqrt(R + d*d);
+}
+
+float* calcul_alphas(Xi *l, int N)
+{
+	return 0;
+}
+
+
 float** interpolation(int width, int height, Xi *l, int N){
 	float** res = malloc(height * sizeof(float*));
 	for(int i = 0; i < height; i++)
@@ -54,6 +66,9 @@ float** interpolation(int width, int height, Xi *l, int N){
 	
 	return res;
 }
+
+
+
 
 void freet(float** t, int height){
 	for(int i = 0; i < height; i++)
