@@ -15,7 +15,12 @@ typedef struct point {
 	float y;
 } Point;
 
+typedef float (* vFunctionCall)(float x, float y);
+
+float cosSin(float x, float y);
 
 void interpolation(int width, int height, Xi *l, int N);
+
+void generateRandomValues(float mu, Xi *l, int nb_gen, vFunctionCall f);
 
 void freet(float** t, int height);

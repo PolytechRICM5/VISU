@@ -9,7 +9,9 @@
 int main(int argc, char **argv)
 {
 	float** res;
-	Xi l[3];
+	Xi l[50];
+
+	/*
 	l[0].x = 0.5;
 	l[0].y = 0.5;
 	l[0].val = 5;
@@ -22,6 +24,9 @@ int main(int argc, char **argv)
 	l[2].y = 0.8;
 	l[2].val = 2;
 	l[2].mu = 2;
+	*/
+
+	generateRandomValues(1, l, 50, (vFunctionCall) cosSin);
 
 	interpolation(100,100,l,3);
 

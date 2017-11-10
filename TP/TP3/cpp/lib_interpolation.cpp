@@ -1,6 +1,7 @@
 #include "lib_interpolation.hpp"
 #include <math.h>
-#include<iostream>
+#include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -48,6 +49,26 @@ void interpolation(int width, int height, Xi *l, int N){
 			cout << (float)x/(float)height << " " << (float)y/(float)width << " " << " " << f << endl;
 		}
 	}
+}
+
+float cosSin(float x, float y) {
+	return cos(x/2) + sin(y/2);
+}
+
+void generateRandomValues(float mu, Xi *l, int nb_gen, vFunctionCall f) {
+
+	for(int i = 0; i<nb_gen; i++) {
+
+		float pos_x = ((double) rand() / (RAND_MAX));
+		float pos_y = ((double) rand() / (RAND_MAX));
+		float val = f(pos_x, pos_y);
+		l[i].x = pos_x;
+		l[i].y = pos_y;
+		l[i].y = val;
+		l[i].mu = mu;
+
+	}
+
 }
 
 void freet(float** t, int height){
