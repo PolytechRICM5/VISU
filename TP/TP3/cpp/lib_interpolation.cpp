@@ -2,6 +2,7 @@
 #include <math.h>
 #include <iostream>
 #include <Eigen/Dense>
+#include <cstdlib>
 
 using namespace std;
 using namespace Eigen;
@@ -158,6 +159,27 @@ float max(float a, float b) {
 	if(a>b) return a;
 	return b;
 }
+
+float cosSin(float x, float y) {
+	return cos(x/2) + sin(y/2);
+}
+
+void generateRandomValues(float mu, Xi *l, int nb_gen, vFunctionCall f) {
+
+	for(int i = 0; i<nb_gen; i++) {
+
+		float pos_x = ((double) rand() / (RAND_MAX));
+		float pos_y = ((double) rand() / (RAND_MAX));
+		float val = f(pos_x, pos_y);
+		l[i].x = pos_x;
+		l[i].y = pos_y;
+		l[i].y = val;
+		l[i].mu = mu;
+
+	}
+
+}
+
 
 float R_stead(Xi *l, int N) {
 	float mx = 0;
