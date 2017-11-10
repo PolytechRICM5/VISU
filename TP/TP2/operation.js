@@ -1,6 +1,11 @@
+/*==================================*/
+/*======= Variables globales =======*/
+/*==================================*/
 var init_data = [];
 
-/* Listeners sur les inputs */
+/*==================================*/
+/*==== Listeners sur les inputs ====*/
+/*==================================*/
 var i_seuil = document.getElementById("seuil");
 i_seuil.addEventListener('change', function()
 {
@@ -8,6 +13,10 @@ i_seuil.addEventListener('change', function()
 });
 
 /* Fonctions */
+
+/**
+ *
+ */
 function readFile(e)
 {
 	var file = e.target.files[0];
@@ -43,6 +52,9 @@ function copyarray(init_data)
 	return data;
 }
 
+/*==================================*/
+/*===== Manipulation de canvas =====*/
+/*==================================*/
 function draw(data, nb_pts)
 {
 	var nb_pts = Math.min(nb_pts, data.length);

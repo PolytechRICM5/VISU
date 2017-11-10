@@ -1,5 +1,8 @@
-#include "lib_interpolation.h"
+#include "lib_interpolation.hpp"
 #include <math.h>
+#include<iostream>
+
+using namespace std;
 
 /* Distance Euclidienne entre deux points
  */
@@ -36,39 +39,16 @@ float F(float x, float y, Xi *l, int N)
 	return res;
 }
 
-float Hk(float x, float y, Xi *l, int k, float R)
-{
-	float d = distance(x,y,l[k].x,l[k].y);
-	return sqrt(R + d*d);
-}
-
-float* calcul_alphas(Xi *l, int N)
-{
-	return 0;
-}
-
-
-float** interpolation(int width, int height, Xi *l, int N){
-	float** res = malloc(height * sizeof(float*));
-	for(int i = 0; i < height; i++)
-	{
-		res[i] = malloc(width * sizeof(float));
-	}
+void interpolation(int width, int height, Xi *l, int N){
 	for(int x = 0; x < height; x++)
 	{
 		for(int y = 0; y < width; y++)
 		{
 			float f = F((float)x/(float)height,(float)y/(float)width,l,N);
-			printf("%f\t%f\t%f\n",(float)x/(float)height,(float)y/(float)width,f);
-			res[x][y] = f;
+			cout << (float)x/(float)height << " " << (float)y/(float)width << " " << " " << f << endl;
 		}
 	}
-	
-	return res;
 }
-
-
-
 
 void freet(float** t, int height){
 	for(int i = 0; i < height; i++)
@@ -77,5 +57,3 @@ void freet(float** t, int height){
 	}
 	free(t);
 }
-
-
