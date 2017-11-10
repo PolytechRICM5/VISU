@@ -16,6 +16,10 @@ typedef struct point {
 } Point;
 
 
-void interpolation(int width, int height, Xi *l, int N);
+void shepard(int width, int height, Xi *l, int N);
+void hardy(int width, int height, Xi *l, int N, float R);
 
-void freet(float** t, int height);
+float R_hardy(Xi *l, int N);
+float R_franke(Xi *l, int N);
+float R_stead(Xi *l, int N);
+
