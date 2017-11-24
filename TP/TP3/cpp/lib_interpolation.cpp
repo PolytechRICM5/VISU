@@ -108,6 +108,7 @@ void hardy(int width, int height, Xi *l, int N, float R)
 			cout << (float)x/(float)height << " " << (float)y/(float)width << " " << " " << f << endl;
 		}
 	}
+	cerr << "alphas : " << alphas << endl;
 }
 
 /**
@@ -160,27 +161,6 @@ float max(float a, float b) {
 	return b;
 }
 
-float cosSin(float x, float y) {
-	return cos(x/2) + sin(y/2);
-}
-
-void generateRandomValues(float mu, Xi *l, int nb_gen, vFunctionCall f) {
-
-	for(int i = 0; i<nb_gen; i++) {
-
-		float pos_x = ((double) rand() / (RAND_MAX));
-		float pos_y = ((double) rand() / (RAND_MAX));
-		float val = f(pos_x, pos_y);
-		l[i].x = pos_x;
-		l[i].y = pos_y;
-		l[i].y = val;
-		l[i].mu = mu;
-
-	}
-
-}
-
-
 float R_stead(Xi *l, int N) {
 	float mx = 0;
 	float my = 0;
@@ -198,4 +178,31 @@ float R_stead(Xi *l, int N) {
 		}
 	}
 	return sqrt((1./10.) * max(max(mx,my),mz));
+}
+
+/**
+ * GENERATION DE VALEURS
+ */
+
+float cosSin(float x, float y) {
+	return cos(x/2) + sin(y/2);
+}
+
+void generateRandomValues(float mu, Xi *l, int nb_gen, vFunctionCall f) {
+	
+	srand(time(NULL));
+
+	for(int i = 0; i<nb_gen; i++) {
+
+		float pos_x = ((double) rand() / (RAND_MAX));
+		float pos_y = ((double) rand() / (RAND_MAX));
+		float val = f(pos_x, pos_y);
+		l[i].x = pos_x;
+		l[i].y = pos_y;
+		l[i].y = val;
+		l[i].mu = mu;
+		
+		cerr << pos_x << " " << pos_y << " " << val << endl;
+	}
+
 }

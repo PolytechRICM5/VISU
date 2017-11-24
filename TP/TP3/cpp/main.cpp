@@ -12,7 +12,7 @@ using namespace std;
 int main(int argc, char **argv)
 {
 	if(argc < 3){
-		cout << "Donner les méthodes en paramètres.\n";
+		cout << "Donner les méthodes en paramètres.\n [1/Shepard 2/Hardy]\nPour calculer R : [1/Hardy 2/Franke 3/Stead]\n";
 		exit(1);
 	}
 	
@@ -23,11 +23,26 @@ int main(int argc, char **argv)
 	int height = 100;
 	
 	
-	
 	float** res;
-	int size = 50;
-	Xi l[50];
-	generateRandomValues(1, l, 50, (vFunctionCall) cosSin);
+	int size = 3;
+	Xi l[size];
+	
+	/*
+	l[0].x = 0.25;
+	l[0].y = 0.25;
+	l[0].val = 5;
+	l[0].mu = 2;
+	l[1].x = 0.75;
+	l[1].y = 0.25;
+	l[1].val = -1;
+	l[1].mu = 2;
+	l[2].x = 0.5;
+	l[2].y = 0.75;
+	l[2].val = 7;
+	l[2].mu = 2;
+	* */
+	
+	generateRandomValues(2, l, size, (vFunctionCall) cosSin);
 	
 	if(method ==1) {
 		shepard(width, height, l, size);
@@ -37,6 +52,7 @@ int main(int argc, char **argv)
 		if(method_R == 1) R = R_hardy(l,3);
 		if(method_R == 2) R = R_franke(l,3);
 		if(method_R == 3) R = R_stead(l,3);
+		cerr << "R : " << R << endl;
 		hardy(width, height, l, size,R);
 	}
 
