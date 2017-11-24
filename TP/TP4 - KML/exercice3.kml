@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>Exercice3</name>
+
+<Placemark>
+<name>Paris : 2.244M hab.</name>
+<Point>
+<coordinates>2.3522219000000177,48.856614</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Bruxelles : 0.177M hab.</name>
+<Point>
+<coordinates>4.351710300000036,50.8503396</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Berlin : 3.502M hab.</name>
+<Point>
+<coordinates>13.404953999999975,52.52000659999999</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Rome : 2.627M hab.</name>
+<Point>
+<coordinates>12.496365500000024,41.9027835</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Lisbonne : 0.530M hab.</name>
+<Point>
+<coordinates>-9.139336599999979,38.7222524</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Madrid : 3.165M hab.</name>
+<Point>
+<coordinates>-3.7037901999999576,40.4167754</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Londres : 8.674M hab.</name>
+<Point>
+<coordinates>-0.12775829999998223,51.5073509</coordinates>
+</Point>
+</Placemark>
+
+</Document>
+</kml>
+

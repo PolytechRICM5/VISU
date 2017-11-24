@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>Exercice3</name>
+
+<Placemark>
+<name>Paris : 2.244M hab.</name>
+<TimeSpan>
+<begin>2000</begin>
+</TimeSpan>
+<Point>
+<coordinates>2.3522219000000177,48.856614</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Bruxelles : 0.177M hab.</name>
+<TimeSpan>
+<begin>2001</begin>
+</TimeSpan>
+<Point>
+<coordinates>4.351710300000036,50.8503396</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Berlin : 3.502M hab.</name>
+<TimeSpan>
+<begin>2002</begin>
+</TimeSpan>
+<Point>
+<coordinates>13.404953999999975,52.52000659999999</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Rome : 2.627M hab.</name>
+<TimeSpan>
+<begin>2003</begin>
+</TimeSpan>
+<Point>
+<coordinates>12.496365500000024,41.9027835</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Lisbonne : 0.530M hab.</name>
+<TimeSpan>
+<begin>2004</begin>
+</TimeSpan>
+<Point>
+<coordinates>-9.139336599999979,38.7222524</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Madrid : 3.165M hab.</name>
+<TimeSpan>
+<begin>2005</begin>
+</TimeSpan>
+<Point>
+<coordinates>-3.7037901999999576,40.4167754</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Londres : 8.674M hab.</name>
+<TimeSpan>
+<begin>2006</begin>
+</TimeSpan>
+<Point>
+<coordinates>-0.12775829999998223,51.5073509</coordinates>
+</Point>
+</Placemark>
+
+</Document>
+</kml>
+
