@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 	<GroundOverlay>
-		<name>Exercice1</name>
+		<name>Exercice2</name>
 		<Icon>
-			<href>data-tp2/carte.jpg</href>
+			<href>data-tp2/PlanCampus.jpg</href>
 		</Icon>
 		<LatLonBox>
-			<north>51.14582064171803</north>
-			<south>42.22993231551517</south>
-			<east>-6.151180487455577</east>
-			<west>10.79288010970161</west>
+			<north>45.2023611</north>
+			<south>45.1801972</south>
+			<east>5.787022222222222</east>
+			<west>5.743447222222223</west>
 		</LatLonBox>
 		<color>a0ffffff</color>
 	</GroundOverlay>
