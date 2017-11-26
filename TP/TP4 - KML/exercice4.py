@@ -15,12 +15,13 @@ for line in file :
     word = line.split()
     print(
         '<Placemark>\n'
-        '<name>' + word[0] + ' : ' + word[3] + 'M hab.</name>\n'
-        '<TimeSpan>\n'
-        '<begin>' + str(year) + '</begin>\n'
-        '</TimeSpan>\n''<Point>\n'
-        '<coordinates>' + word[1] + ',' + word[2] + '</coordinates>\n'
-        '</Point>\n'
+            '<name>' + word[0] + ' : ' + word[3] + 'M hab.</name>\n'
+            '<TimeSpan>\n'
+                '<begin>' + str(year) + '</begin>\n'
+            '</TimeSpan>\n'
+            '<Point>\n'
+                '<coordinates>' + word[1] + ',' + word[2] + '</coordinates>\n'
+            '</Point>\n'
         '</Placemark>\n'
     )
     year+=1

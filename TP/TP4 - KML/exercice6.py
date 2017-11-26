@@ -3,6 +3,7 @@
 file = open("data-tp2/cities.txt", "r");
 
 year = 2000
+nb_points = 100
 
 print (
 '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -35,6 +36,8 @@ i+=1
 while i < len(table) :
     prev = table[i-1].split()
     word = table[i].split()
+    lon = float(word[2]) - float(prev[2])
+    lat = float(word[1]) - float(prev[1])
     print(
         '<Placemark>\n'
         '<name>path</name>\n'
@@ -44,10 +47,16 @@ while i < len(table) :
         '<LineString>\n'
         '<extrude>1</extrude>\n'
         '<tesselate>1</tesselate>\n'
-        '<altitudeMode>absolute</altitudeMode>\n'
+        '<altitudeMode>relativeToGround</altitudeMode>\n'
         '<coordinates>\n'
-        + prev[1] + ',' + prev[2] + ',2357\n'
-        + word[1] + ',' + word[2] + ',2357\n'
+        + prev[1] + ',' + prev[2] + ',2357'
+    )
+    for j in range(nb_points) :
+        print(
+            str(float(prev[1]) + lat * j / nb_points) + ',' + str(float(prev[2]) + lon * j / nb_points) + ',2357'
+        )
+    print (
+        word[1] + ',' + word[2] + ',2357\n'
         '</coordinates>\n'
         '</LineString>\n'
         '</Placemark>\n'
