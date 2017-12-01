@@ -6,7 +6,7 @@ print (
 '<?xml version="1.0" encoding="UTF-8"?>\n'
 '<kml xmlns="http://www.opengis.net/kml/2.2">\n'
 '<Document>\n'
-'<name>Exercice10</name>\n'
+'<name>Exercice12-10</name>\n'
 )
 
 print (
