@@ -9,7 +9,7 @@ print (
 '<?xml version="1.0" encoding="UTF-8"?>\n'
 '<kml xmlns="http://www.opengis.net/kml/2.2">\n'
 '<Document>\n'
-'<name>Exercice6</name>\n'
+'<name>Exercice11</name>\n'
 )
 
 print (
@@ -97,7 +97,7 @@ while i < len(table) :
     print(
         '<Placemark>\n'
         '<name>path</name>\n'
-        '<styleUrl>#' + str(color%6) + '</styleUrl>'
+        '<styleUrl>#' + str(color%6) + '</styleUrl>\n'
         '<TimeSpan>\n'
         '<begin>' + str(year) + '</begin>\n'
         '</TimeSpan>\n'

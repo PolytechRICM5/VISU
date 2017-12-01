@@ -6,7 +6,7 @@ print (
 '<?xml version="1.0" encoding="UTF-8"?>\n'
 '<kml xmlns="http://www.opengis.net/kml/2.2">\n'
 '<Document>\n'
-'<name>Exercice8</name>\n'
+'<name>Exercice12-9</name>\n'
 )
 
 print (
@@ -21,46 +21,55 @@ print (
 print (
 '<Style id="1">\n'
 '<LineStyle>\n'
-'<color>cc0069ff</color>\n'
-'<width>2</width>\n'
+'<color>ff0069ff</color>\n'
+'<width>1</width>\n'
 '</LineStyle>\n'
-'<PolyStyle><color>cc0069ff</color></PolyStyle>\n'
+'<PolyStyle><color>ff0069ff</color></PolyStyle>\n'
 '</Style>\n'
 )
 print (
 '<Style id="2">\n'
 '<LineStyle>\n'
-'<color>aa00ffff</color>\n'
-'<width>4</width>\n'
+'<color>ff00ffff</color>\n'
+'<width>1</width>\n'
 '</LineStyle>\n'
-'<PolyStyle><color>aa00ffff</color></PolyStyle>\n'
+'<PolyStyle><color>ff00ffff</color></PolyStyle>\n'
 '</Style>\n'
 )
 print (
 '<Style id="3">\n'
 '<LineStyle>\n'
-'<color>8800ff00</color>\n'
-'<width>8</width>\n'
+'<color>ff00ff00</color>\n'
+'<width>1</width>\n'
 '</LineStyle>\n'
-'<PolyStyle><color>8800ff00</color></PolyStyle>\n'
+'<PolyStyle><color>ff00ff00</color></PolyStyle>\n'
 '</Style>\n'
 )
 print (
 '<Style id="4">\n'
 '<LineStyle>\n'
-'<color>66ff6900</color>\n'
-'<width>16</width>\n'
+'<color>ffff6900</color>\n'
+'<width>1</width>\n'
 '</LineStyle>\n'
-'<PolyStyle><color>66ff6900</color></PolyStyle>\n'
+'<PolyStyle><color>ffff6900</color></PolyStyle>\n'
 '</Style>\n'
 )
 print (
 '<Style id="5">\n'
 '<LineStyle>\n'
-'<color>44ff0069</color>\n'
-'<width>32</width>\n'
+'<color>ffff0069</color>\n'
+'<width>1</width>\n'
 '</LineStyle>\n'
-'<PolyStyle><color>44ff0069</color></PolyStyle>\n'
+'<PolyStyle><color>ffff0069</color></PolyStyle>\n'
+'</Style>\n'
+)
+print (
+'<Style id="6">\n'
+'<LineStyle>\n'
+'<color>ffff8bed</color>\n'
+'<width>1</width>\n'
+'</LineStyle>\n'
+'<PolyStyle><color>ffff8bed</color></PolyStyle>\n'
 '</Style>\n'
 )
 
@@ -70,7 +79,7 @@ for line in file :
     print(
         '<Placemark>\n'
             '<name>' + word[0] + ' : ' + word[3] + 'M hab.</name>\n'
-            '<styleUrl>#' + str(color%6) + '</styleUrl>\n'
+            '<styleUrl>#' + str(color%7) + '</styleUrl>\n'
             '<Polygon>\n'
                 '<extrude>1</extrude>\n'
                 '<altitudeMode>relativeToGround</altitudeMode>\n'

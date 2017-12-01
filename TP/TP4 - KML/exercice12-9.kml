@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>Exercice12-9</name>
+
+<Style id="0">
+<LineStyle>
+<color>ff0000ff</color>
+<width>1</width>
+</LineStyle>
+<PolyStyle><color>ff0000ff</color></PolyStyle>
+</Style>
+
+<Style id="1">
+<LineStyle>
+<color>ff0069ff</color>
+<width>1</width>
+</LineStyle>
+<PolyStyle><color>ff0069ff</color></PolyStyle>
+</Style>
+
+<Style id="2">
+<LineStyle>
+<color>ff00ffff</color>
+<width>1</width>
+</LineStyle>
+<PolyStyle><color>ff00ffff</color></PolyStyle>
+</Style>
+
+<Style id="3">
+<LineStyle>
+<color>ff00ff00</color>
+<width>1</width>
+</LineStyle>
+<PolyStyle><color>ff00ff00</color></PolyStyle>
+</Style>
+
+<Style id="4">
+<LineStyle>
+<color>ffff6900</color>
+<width>1</width>
+</LineStyle>
+<PolyStyle><color>ffff6900</color></PolyStyle>
+</Style>
+
+<Style id="5">
+<LineStyle>
+<color>ffff0069</color>
+<width>1</width>
+</LineStyle>
+<PolyStyle><color>ffff0069</color></PolyStyle>
+</Style>
+
+<Style id="6">
+<LineStyle>
+<color>ffff8bed</color>
+<width>1</width>
+</LineStyle>
+<PolyStyle><color>ffff8bed</color></PolyStyle>
+</Style>
+
+<Placemark>
+<name>Paris : 2.244M hab.</name>
+<styleUrl>#0</styleUrl>
+<Polygon>
+<extrude>1</extrude>
+<altitudeMode>relativeToGround</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+2.6522219,49.056614,224400.0
+2.6522219,48.656614,224400.0
+2.0522219,48.656614,224400.0
+2.0522219,49.056614,224400.0
+2.6522219,49.056614,224400.0
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>Paris : 2.244M hab.</name>
+<Point>
+<coordinates>2.3522219000000177,48.856614</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Bruxelles : 0.177M hab.</name>
+<styleUrl>#1</styleUrl>
+<Polygon>
+<extrude>1</extrude>
+<altitudeMode>relativeToGround</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+4.6517103,51.0503396,17700.0
+4.6517103,50.6503396,17700.0
+4.0517103,50.6503396,17700.0
+4.0517103,51.0503396,17700.0
+4.6517103,51.0503396,17700.0
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>Bruxelles : 0.177M hab.</name>
+<Point>
+<coordinates>4.351710300000036,50.8503396</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Berlin : 3.502M hab.</name>
+<styleUrl>#2</styleUrl>
+<Polygon>
+<extrude>1</extrude>
+<altitudeMode>relativeToGround</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+13.704954,52.7200066,350200.0
+13.704954,52.3200066,350200.0
+13.104954,52.3200066,350200.0
+13.104954,52.7200066,350200.0
+13.704954,52.7200066,350200.0
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>Berlin : 3.502M hab.</name>
+<Point>
+<coordinates>13.404953999999975,52.52000659999999</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Rome : 2.627M hab.</name>
+<styleUrl>#3</styleUrl>
+<Polygon>
+<extrude>1</extrude>
+<altitudeMode>relativeToGround</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+12.7963655,42.1027835,262700.0
+12.7963655,41.7027835,262700.0
+12.1963655,41.7027835,262700.0
+12.1963655,42.1027835,262700.0
+12.7963655,42.1027835,262700.0
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>Rome : 2.627M hab.</name>
+<Point>
+<coordinates>12.496365500000024,41.9027835</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Lisbonne : 0.530M hab.</name>
+<styleUrl>#4</styleUrl>
+<Polygon>
+<extrude>1</extrude>
+<altitudeMode>relativeToGround</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-8.8393366,38.9222524,53000.0
+-8.8393366,38.5222524,53000.0
+-9.4393366,38.5222524,53000.0
+-9.4393366,38.9222524,53000.0
+-8.8393366,38.9222524,53000.0
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>Lisbonne : 0.530M hab.</name>
+<Point>
+<coordinates>-9.139336599999979,38.7222524</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Madrid : 3.165M hab.</name>
+<styleUrl>#5</styleUrl>
+<Polygon>
+<extrude>1</extrude>
+<altitudeMode>relativeToGround</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+-3.4037902,40.6167754,316500.0
+-3.4037902,40.2167754,316500.0
+-4.0037902,40.2167754,316500.0
+-4.0037902,40.6167754,316500.0
+-3.4037902,40.6167754,316500.0
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>Madrid : 3.165M hab.</name>
+<Point>
+<coordinates>-3.7037901999999576,40.4167754</coordinates>
+</Point>
+</Placemark>
+
+<Placemark>
+<name>Londres : 8.674M hab.</name>
+<styleUrl>#6</styleUrl>
+<Polygon>
+<extrude>1</extrude>
+<altitudeMode>relativeToGround</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>
+0.1722417,51.7073509,867400.0
+0.1722417,51.3073509,867400.0
+-0.4277583,51.3073509,867400.0
+-0.4277583,51.7073509,867400.0
+0.1722417,51.7073509,867400.0
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+<Placemark>
+<name>Londres : 8.674M hab.</name>
+<Point>
+<coordinates>-0.12775829999998223,51.5073509</coordinates>
+</Point>
+</Placemark>
+
+</Document>
+</kml>
+
