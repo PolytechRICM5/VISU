@@ -12,12 +12,67 @@ print (
 '<name>Exercice6</name>\n'
 )
 
+print (
+'<Style id="0">\n'
+'<LineStyle>\n'
+'<color>ff0000ff</color>\n'
+'<width>1</width>\n'
+'</LineStyle>\n'
+'<PolyStyle><color>ff0000ff</color></PolyStyle>\n'
+'</Style>\n'
+)
+print (
+'<Style id="1">\n'
+'<LineStyle>\n'
+'<color>cc0069ff</color>\n'
+'<width>2</width>\n'
+'</LineStyle>\n'
+'<PolyStyle><color>cc0069ff</color></PolyStyle>\n'
+'</Style>\n'
+)
+print (
+'<Style id="2">\n'
+'<LineStyle>\n'
+'<color>aa00ffff</color>\n'
+'<width>4</width>\n'
+'</LineStyle>\n'
+'<PolyStyle><color>aa00ffff</color></PolyStyle>\n'
+'</Style>\n'
+)
+print (
+'<Style id="3">\n'
+'<LineStyle>\n'
+'<color>8800ff00</color>\n'
+'<width>8</width>\n'
+'</LineStyle>\n'
+'<PolyStyle><color>8800ff00</color></PolyStyle>\n'
+'</Style>\n'
+)
+print (
+'<Style id="4">\n'
+'<LineStyle>\n'
+'<color>66ff6900</color>\n'
+'<width>16</width>\n'
+'</LineStyle>\n'
+'<PolyStyle><color>66ff6900</color></PolyStyle>\n'
+'</Style>\n'
+)
+print (
+'<Style id="5">\n'
+'<LineStyle>\n'
+'<color>44ff0069</color>\n'
+'<width>32</width>\n'
+'</LineStyle>\n'
+'<PolyStyle><color>44ff0069</color></PolyStyle>\n'
+'</Style>\n'
+)
+
 table = []
 
 for line in file :
     table.append(line)
 
-i = 0;
+i = 0
 word = table[i].split()
 print(
     '<Placemark>\n'
@@ -33,6 +88,7 @@ print(
 year+=1
 i+=1
 
+color = 0
 while i < len(table) :
     prev = table[i-1].split()
     word = table[i].split()
@@ -41,6 +97,7 @@ while i < len(table) :
     print(
         '<Placemark>\n'
         '<name>path</name>\n'
+        '<styleUrl>#' + str(color%6) + '</styleUrl>'
         '<TimeSpan>\n'
         '<begin>' + str(year) + '</begin>\n'
         '</TimeSpan>\n'
@@ -73,6 +130,7 @@ while i < len(table) :
     )
     year+=1
     i+=1
+    color+=1
 
 print(
 '</Document>\n'

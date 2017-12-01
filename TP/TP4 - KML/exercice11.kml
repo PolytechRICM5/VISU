@@ -3,6 +3,54 @@
 <Document>
 <name>Exercice6</name>
 
+<Style id="0">
+<LineStyle>
+<color>ff0000ff</color>
+<width>1</width>
+</LineStyle>
+<PolyStyle><color>ff0000ff</color></PolyStyle>
+</Style>
+
+<Style id="1">
+<LineStyle>
+<color>cc0069ff</color>
+<width>2</width>
+</LineStyle>
+<PolyStyle><color>cc0069ff</color></PolyStyle>
+</Style>
+
+<Style id="2">
+<LineStyle>
+<color>aa00ffff</color>
+<width>4</width>
+</LineStyle>
+<PolyStyle><color>aa00ffff</color></PolyStyle>
+</Style>
+
+<Style id="3">
+<LineStyle>
+<color>8800ff00</color>
+<width>8</width>
+</LineStyle>
+<PolyStyle><color>8800ff00</color></PolyStyle>
+</Style>
+
+<Style id="4">
+<LineStyle>
+<color>66ff6900</color>
+<width>16</width>
+</LineStyle>
+<PolyStyle><color>66ff6900</color></PolyStyle>
+</Style>
+
+<Style id="5">
+<LineStyle>
+<color>44ff0069</color>
+<width>32</width>
+</LineStyle>
+<PolyStyle><color>44ff0069</color></PolyStyle>
+</Style>
+
 <Placemark>
 <name>Paris : 2.244M hab.</name>
 <TimeSpan>
@@ -15,7 +63,7 @@
 
 <Placemark>
 <name>path</name>
-<TimeSpan>
+<styleUrl>#0</styleUrl><TimeSpan>
 <begin>2001</begin>
 </TimeSpan>
 <LineString>
@@ -140,7 +188,7 @@
 
 <Placemark>
 <name>path</name>
-<TimeSpan>
+<styleUrl>#1</styleUrl><TimeSpan>
 <begin>2003</begin>
 </TimeSpan>
 <LineString>
@@ -265,7 +313,7 @@
 
 <Placemark>
 <name>path</name>
-<TimeSpan>
+<styleUrl>#2</styleUrl><TimeSpan>
 <begin>2005</begin>
 </TimeSpan>
 <LineString>
@@ -390,7 +438,7 @@
 
 <Placemark>
 <name>path</name>
-<TimeSpan>
+<styleUrl>#3</styleUrl><TimeSpan>
 <begin>2007</begin>
 </TimeSpan>
 <LineString>
@@ -515,7 +563,7 @@
 
 <Placemark>
 <name>path</name>
-<TimeSpan>
+<styleUrl>#4</styleUrl><TimeSpan>
 <begin>2009</begin>
 </TimeSpan>
 <LineString>
@@ -640,7 +688,7 @@
 
 <Placemark>
 <name>path</name>
-<TimeSpan>
+<styleUrl>#5</styleUrl><TimeSpan>
 <begin>2011</begin>
 </TimeSpan>
 <LineString>
