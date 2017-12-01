@@ -6,10 +6,10 @@
 			<href>data-tp2/PlanCampus.jpg</href>
 		</Icon>
 		<LatLonBox>
-			<north>45.2023611</north>
-			<south>45.1801972</south>
+			<north>45.2037083</north>
+			<south>45.180195</south>
 			<east>5.787022222222222</east>
-			<west>5.743447222222223</west>
+			<west>5.745269444444444</west>
 		</LatLonBox>
 		<color>a0ffffff</color>
 	</GroundOverlay>
