@@ -40,9 +40,9 @@ int main(int argc, char **argv)
 	l[2].y = 0.75;
 	l[2].val = 7;
 	l[2].mu = 2;
-	* */
+	*/
 	
-	generateRandomValues(2, l, size, (vFunctionCall) cosSin);
+	generateRandomValues(2, l, size, (vFunctionCall) simpleSum);
 	
 	if(method ==1) {
 		shepard(width, height, l, size);

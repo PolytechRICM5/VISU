@@ -18,6 +18,7 @@ typedef struct point {
 typedef float (* vFunctionCall)(float x, float y);
 
 float cosSin(float x, float y);
+float simpleSum(float x, float y);
 
 void shepard(int width, int height, Xi *l, int N);
 void hardy(int width, int height, Xi *l, int N, float R);
