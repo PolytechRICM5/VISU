@@ -11,28 +11,32 @@ paraview.simple._DisableFirstRenderCameraReset()
 
 # Create a new 'Render View'
 renderView1 = CreateView('RenderView')
-renderView1.ViewSize = [1141, 838]
+renderView1.UseOffscreenRendering = True
+renderView1.UseOffscreenRenderingForScreenshots = True
+MonEchelle = 0.5
+renderView1.ViewSize = [(int) (2801*MonEchelle),(int) (1791*MonEchelle)]
 renderView1.InteractionMode = '2D'
-renderView1.AxesGrid = 'GridAxes3DActor'
-renderView1.CenterOfRotation = [2.0, 46.44499969482422, 0.0]
-renderView1.StereoType = 0
-renderView1.CameraPosition = [2.0, 46.44499969482422, 64.19017409153193]
-renderView1.CameraFocalPoint = [2.0, 46.44499969482422, 0.0]
-renderView1.CameraParallelScale = 11.347339364343176
-renderView1.Background = [0.32, 0.34, 0.43]
+renderView1.OrientationAxesVisibility = 0
+renderView1.CenterOfRotation = [2., 46.45, 0.0]
+renderView1.CameraPosition = [2., 46.45, 60.]
+renderView1.CameraFocalPoint = [2., 46.45, 0.0]
+renderView1.CameraParallelScale = 9.
+renderView1.CameraParallelProjection = 1
+renderView1.Background = [1.0, 1.0, 1.0]
+renderView1.UseGradientBackground = 1
 
 # ----------------------------------------------------------------
 # setup the data processing pipelines
 # ----------------------------------------------------------------
 
 # create a new 'NetCDF Reader'
-aromeHD_SP1_DateRun_20171215T06_00_00_DatePrev_20171215T15_00_00grib2nc = NetCDFReader(FileName=['/home/alicia/Documents/VISU/METEO_VISUALISATION_SIMPLE/DATA/AromeHD_SP1_DateRun_2017-12-15T06_00_00_DatePrev_2017-12-15T15_00_00.grib2.nc'])
-aromeHD_SP1_DateRun_20171215T06_00_00_DatePrev_20171215T15_00_00grib2nc.Dimensions = '(latitude, longitude)'
-aromeHD_SP1_DateRun_20171215T06_00_00_DatePrev_20171215T15_00_00grib2nc.SphericalCoordinates = 0
-aromeHD_SP1_DateRun_20171215T06_00_00_DatePrev_20171215T15_00_00grib2nc.OutputType = 'Image'
+lecteurNC = NetCDFReader(FileName=[sys.argv[1]])
+lecteurNC.Dimensions = '(latitude, longitude)'
+lecteurNC.SphericalCoordinates = 0
+lecteurNC.OutputType = 'Image'
 
 # create a new 'Extract Subset'
-extractSubset1 = ExtractSubset(Input=aromeHD_SP1_DateRun_20171215T06_00_00_DatePrev_20171215T15_00_00grib2nc)
+extractSubset1 = ExtractSubset(Input=lecteurNC)
 extractSubset1.VOI = [0, 2800, 0, 1790, 0, 0]
 extractSubset1.SampleRateI = 50
 extractSubset1.SampleRateJ = 50
@@ -40,7 +44,7 @@ extractSubset1.SampleRateJ = 50
 # create a new 'Calculator'
 calculator2 = Calculator(Input=extractSubset1)
 calculator2.ResultArrayName = 'temp'
-calculator2.Function = 'TMP_2maboveground - 273.15'
+calculator2.Function = 'TMP_2maboveground-273.15'
 
 # create a new 'Threshold'
 threshold2 = Threshold(Input=calculator2)
@@ -50,7 +54,7 @@ threshold2.ThresholdRange = [-20.0, 30.0]
 # create a new 'Calculator'
 calculator3 = Calculator(Input=threshold2)
 calculator3.ResultArrayName = 'Vent'
-calculator3.Function = 'UGRD_10maboveground * iHat + VGRD_10maboveground * jHat'
+calculator3.Function = 'UGRD_10maboveground*iHat+VGRD_10maboveground*jHat'
 
 # create a new 'Stream Tracer'
 streamTracer1 = StreamTracer(Input=calculator3,
@@ -64,7 +68,7 @@ streamTracer1.SeedType.Point2 = [15.5, 55.0, 0.0]
 streamTracer1.SeedType.Resolution = 50
 
 # create a new 'Calculator'
-calculator1 = Calculator(Input=aromeHD_SP1_DateRun_20171215T06_00_00_DatePrev_20171215T15_00_00grib2nc)
+calculator1 = Calculator(Input=lecteurNC)
 calculator1.ResultArrayName = 'temp'
 calculator1.Function = 'TMP_2maboveground - 273.15'
 
@@ -199,3 +203,7 @@ glyphVectorLUTColorBar.ComponentTitle = 'Magnitude'
 # finally, restore active source
 SetActiveSource(streamTracer1)
 # ----------------------------------------------------------------
+
+
+# SAUVE UNE COPIE D ECRAN DANS UN FICHIER PNG
+WriteImage(sys.argv[1]+".png")

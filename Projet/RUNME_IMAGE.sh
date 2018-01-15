@@ -39,8 +39,8 @@ echo
 if [ -e DATA/$NomDuFichierMeteoFrance.nc ]; then
 	echo "LE FICHIER NC EXISTE DEJA"
 else
-	wgrib2 DATA/$NomDuFichierMeteoFrance -match ":TMP:" -netcdf DATA/$NomDuFichierMeteoFrance.nc
-
+	wgrib2 DATA/$NomDuFichierMeteoFrance -netcdf DATA/$NomDuFichierMeteoFrance.nc
+        #-match ":TMP:"
 	rc=$?
 fi
 
