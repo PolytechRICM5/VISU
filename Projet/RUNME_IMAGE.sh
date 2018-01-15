@@ -65,7 +65,8 @@ echo
 if [ -e KML/IMAGES/$NomDuFichierMeteoFrance.nc.png ]; then
 	echo "L IMAGE EXISTE DEJA"
 else
-	pvpython PYTHON/VisuAvecTemperature.py DATA/$NomDuFichierMeteoFrance.nc
+	#pvpython PYTHON/VisuAvecTemperature.py DATA/$NomDuFichierMeteoFrance.nc
+  pvpython PYTHON/FirstPipeline.py DATA/$NomDuFichierMeteoFrance.nc
 #	pvpython PYTHON/VisuAvecVentEtTemperature.py DATA/$NomDuFichierMeteoFrance.nc
 #	pvpython PYTHON/VisuAvecVentSeulement.py DATA/$NomDuFichierMeteoFrance.nc
 	rc=$?
