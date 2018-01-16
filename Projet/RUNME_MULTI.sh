@@ -7,8 +7,10 @@ else
         # ==================================================================================================
         echo "=== CREATION DU FICHIER KML POUR GOOGLE EARTH"
         echo
-        
-        cat KML/templateKMZ_TOP.kml | sed "s/ICILEFICHIER/$NomDuFichierMeteoFrance.nc.png/g" | sed "s/ICILENOM/RUN_DU_$DateDuRun/g" > tmp.kml
+
+        DateDuRun=`python PYTHON/DateDuRunAromeHD.py $1`
+
+        cat KML/templateKMZ_TOP.kml | sed "s/ICILENOM/RUN_DU_$DateDuRun/g" > tmp.kml
 
         echo "== TELECHARGEMENT ET VISUALISATION DES DONNEES DE SIMULATION METEOFRANCE ENTRE DANS $1 HEURE(S) et $2 HEURE(S)"
 fi
@@ -27,7 +29,6 @@ do
         fi
 
         DateDeLaPrevision=`python PYTHON/DateDeLaPrevisionAromeHD.py $i`
-        DateDuRun=`python PYTHON/DateDuRunAromeHD.py $i`
         if [ -e  $NomDuFichierMeteoFrance ]; then
 	        mv $NomDuFichierMeteoFrance DATA
         fi
@@ -65,7 +66,7 @@ do
 
         echo "LES DONNEES PARAVIEW SONT SAUVEES DANS LE FICHIER DATA/$NomDuFichierMeteoFrance.nc"
         echo
-        
+
         # ==================================================================================================
         echo "=== CREATION DE L IMAGE PNG PAR PARAVIEW"
         echo
@@ -96,28 +97,38 @@ do
 	        fi
         fi
 
+        # ==================================================================================================
         echo "L IMAGE EST SAUVEE DANS LE FICHIER KML/IMAGES/$NomDuFichierMeteoFrance.nc.png"
+        echo
+
+        cat KML/templateKMZ_BODY.kml | sed "s/ICILEFICHIER/$NomDuFichierMeteoFrance.nc.png/g" | sed "s/ICILENOM/RUN_DU_$DateDuRun/g" | sed "s/ICILADATEDELAPREVISION/$DateDeLaPrevision/g" >> tmp.kml
+
+        # ==================================================================================================
+        echo "=== AJOUT DE L'IMAGE DANS LE FICHIER KML TEMPORAIRE"
         echo
 
 done
 
-exit 0
+# ==================================================================================================
+echo "=== FINALISATION DU FICHIER KML"
+echo
 
+cat templateKMZ_BOTTOM.kml >> tmp.kml
+cat tmp.kml > KML/RUN_DU_$DateDuRun-PREVISION_DU_$DateDeLaPrevision.kml
+rm tmp.kml
 
-cat KML/templateKMZ.kml | sed "s/ICILEFICHIER/$NomDuFichierMeteoFrance.nc.png/g" > tmp.kml
-cat tmp.kml | sed "s/ICILENOM/RUN_DU_$DateDuRun/g" > tmp1.kml
-cat tmp1.kml | sed "s/ICILADATEDELAPREVISION/$DateDeLaPrevision/g" > KML/$NomDuFichierMeteoFrance.nc.png.kml
-rm tmp.kml tmp1.kml
-
-echo "LE FICHIER KML KML/$NomDuFichierMeteoFrance.nc.png.kml PEUT ETRE OUVERT AVEC GOOGLE EARTH"
+echo "LE FICHIER KML KML/RUN_DU_$DateDuRun-PREVISION_DU_$DateDeLaPrevision.kml PEUT ETRE OUVERT AVEC GOOGLE EARTH"
 echo
 
 # ==================================================================================================
 echo "=== CREATION DE L ARCHIVE KMZ POUR GOOGLE EARTH"
 echo
 
-cd KML; zip $NomDuFichierMeteoFrance.nc.png.kmz IMAGES/$NomDuFichierMeteoFrance.nc.png $NomDuFichierMeteoFrance.nc.png.kml
+cd KML; zip RUN_DU_$DateDuRun-PREVISION_DU_$DateDeLaPrevision.kmz IMAGES/*.nc.png RUN_DU_$DateDuRun-PREVISION_DU_$DateDeLaPrevision.kml
+# suppression des images pour éviter de toutes les recompresser à chaque fois
+rm IMAGES/*.nc.png
 
-
-echo "LE FICHIER KMZ KML/$NomDuFichierMeteoFrance.nc.png.kmz PEUT ETRE OUVERT AVEC GOOGLE EARTH"
+echo "LE FICHIER KMZ KML/RUN_DU_$DateDuRun-PREVISION_DU_$DateDeLaPrevision.kmz PEUT ETRE OUVERT AVEC GOOGLE EARTH"
 echo
+
+exit 0

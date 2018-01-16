@@ -3,23 +3,3 @@
   <Folder>
     <name>ICILENOM</name>
     <description>ICILENOM</description>
-    <GroundOverlay>
-	<TimeStamp>
-	<when> ICILADATEDELAPREVISION </when>
-	</TimeStamp>
-      <name>ICILENOM</name>
-      <!-- <color>96ffffff</color> -->
-      <!-- <color>ffffffff</color> -->
-<Icon><href>
-<![CDATA[./IMAGES/ICILEFICHIER]]></href>
-      </Icon>
-      <LatLonBox>
-        <north>55.4</north>
-        <south>37.5</south>
-        <west>-12</west>
-        <east>16</east>
-        <rotation>0</rotation>
-      </LatLonBox>
-    </GroundOverlay>
-  </Folder>
-</kml>
