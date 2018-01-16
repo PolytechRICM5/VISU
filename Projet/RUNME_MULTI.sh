@@ -101,11 +101,22 @@ do
         echo "L IMAGE EST SAUVEE DANS LE FICHIER KML/IMAGES/$NomDuFichierMeteoFrance.nc.png"
         echo
 
-        cat KML/templateKMZ_BODY.kml | sed "s/ICILEFICHIER/$NomDuFichierMeteoFrance.nc.png/g" | sed "s/ICILENOM/RUN_DU_$DateDuRun/g" | sed "s/ICILADATEDELAPREVISION/$DateDeLaPrevision/g" >> tmp.kml
-
         # ==================================================================================================
         echo "=== AJOUT DE L'IMAGE DANS LE FICHIER KML TEMPORAIRE"
         echo
+
+        cat KML/templateKMZ_BODY.kml | sed "s/ICILEFICHIER/$NomDuFichierMeteoFrance.nc.png/g" | sed "s/ICILENOM/RUN_DU_$DateDuRun/g" | sed "s/ICILADATEDELAPREVISION/$DateDeLaPrevision/g" >> tmp.kml
+
+        # ==================================================================================================
+        echo "=== AJOUT DES COURBES ISOVALEUR"
+        echo
+
+      	pvpython PYTHON/MyContourConnecteEnKML.py DATA/$NomDuFichierMeteoFrance.nc >> tmp.kml
+      	rc=$?
+      	if ! [ $rc == 0 ]; then
+      		echo "LES CONTOURS N ONT PAS PU ETRE CALCULES PAR PARAVIEW"
+      		exit 1
+      	fi
 
 done
 
