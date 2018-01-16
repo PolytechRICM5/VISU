@@ -22,8 +22,6 @@ renderView1.CameraPosition = [2., 46.45, 60.]
 renderView1.CameraFocalPoint = [2., 46.45, 0.0]
 renderView1.CameraParallelScale = 9.
 renderView1.CameraParallelProjection = 1
-renderView1.Background = [1.0, 1.0, 1.0]
-renderView1.UseGradientBackground = 1
 
 # ----------------------------------------------------------------
 # setup the data processing pipelines
