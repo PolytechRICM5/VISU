@@ -1,8 +1,8 @@
     <GroundOverlay>
-	<TimeStamp>
+	<TimeSpan>
 	<begin> ICILADATEDELAPREVISION </begin>
 	<end> ICILADATEDELAPREVISION </end>
-	</TimeStamp>
+	</TimeSpan>
       <name>ICILENOM</name>
       <!-- <color>96ffffff</color> -->
       <!-- <color>ffffffff</color> -->
