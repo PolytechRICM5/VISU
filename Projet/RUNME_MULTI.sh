@@ -126,7 +126,7 @@ echo
 
 cd KML; zip RUN_DU_$DateDuRun-PREVISION_DU_$DateDeLaPrevision.kmz IMAGES/*.nc.png RUN_DU_$DateDuRun-PREVISION_DU_$DateDeLaPrevision.kml
 # suppression des images pour éviter de toutes les recompresser à chaque fois
-rm IMAGES/*.nc.png
+# rm IMAGES/*.nc.png
 
 echo "LE FICHIER KMZ KML/RUN_DU_$DateDuRun-PREVISION_DU_$DateDeLaPrevision.kmz PEUT ETRE OUVERT AVEC GOOGLE EARTH"
 echo
