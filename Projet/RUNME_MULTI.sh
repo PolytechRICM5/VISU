@@ -113,7 +113,7 @@ done
 echo "=== FINALISATION DU FICHIER KML"
 echo
 
-cat templateKMZ_BOTTOM.kml >> tmp.kml
+cat KML/templateKMZ_BOTTOM.kml >> tmp.kml
 cat tmp.kml > KML/RUN_DU_$DateDuRun-PREVISION_DU_$DateDeLaPrevision.kml
 rm tmp.kml
 
