@@ -65,9 +65,9 @@ def EcritUneLigneEnKML( TousLesSommetsDansLeBonSens, MesDonneesDuContour, Nom, I
 
 	print("<Placemark>")
 	print("<name> " + Nom + " </name>")
-	print("<TimeSpan>")
+	print("<TimeStamp>")
 	print("  <when> ICILADATEDELAPREVISION </when>")
-	print("</TimeSpan>")
+	print("</TimeStamp>")
 	print("<styleUrl>#ContourValeurId"+str(IndiceCouleurDuContour)+"</styleUrl>")
 	print("<LineString>")
 	print("<coordinates>")
