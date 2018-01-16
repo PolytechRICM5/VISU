@@ -47,7 +47,7 @@ def ParcoursDansUnSens(SegmentCourant, PointCourant, PointDeBouclage, TousLesSom
 			FinLigne = FinLigne | (PointCourant == PointDeBouclage)
 
 	if (PointCourant == PointDeBouclage):
-		TousLesSommetsDansLeBonSens.InsertNextId( PointCourant) 	
+		TousLesSommetsDansLeBonSens.InsertNextId( PointCourant)
 
 	TousLesSegmentsValidesEtNonParcourus.DeleteId( SegmentCourant)
 
@@ -64,7 +64,10 @@ def EcritUneLigneEnKML( TousLesSommetsDansLeBonSens, MesDonneesDuContour, Nom, I
 	MesPoints=MesDonneesDuContour.GetPoints() # on accede aux points
 
 	print("<Placemark>")
-	print("<name> " + Nom + " </name>")    
+	print("<name> " + Nom + " </name>")
+	print("<TimeStamp>")
+	print("  <when> ICILADATEDELAPREVISION </when>")
+	print("</TimeStamp>")
 	print("<styleUrl>#ContourValeurId"+str(IndiceCouleurDuContour)+"</styleUrl>")
 	print("<LineString>")
 	print("<coordinates>")
@@ -118,7 +121,7 @@ def InitialiseLesSegmentsSansNanEtNonParcourus( TousLesSegmentsValides, MesDonne
 # FIN DE ChercheSegmentNonParcouruEtSansNan
 
 
-	
+
 
 def ConvertitDonneesContourEnKML( MesDonneesDuContour, NomDuContour, IndiceCouleurDuContour):
 
@@ -147,7 +150,7 @@ def ConvertitDonneesContourEnKML( MesDonneesDuContour, NomDuContour, IndiceCoule
 			EcritUneLigneEnKML( TousLesSommetsDansLeBonSens, MesDonneesDuContour, NomDuContour + "(ferme)", IndiceCouleurDuContour)
 		else:
 			EcritUneLigneEnKML( TousLesSommetsDansLeBonSens, MesDonneesDuContour, NomDuContour + "(premiere moitie)", IndiceCouleurDuContour)
-	
+
 		if (PointCourant != PointDeBouclage):
 			# je repars dans l autre direction
 
