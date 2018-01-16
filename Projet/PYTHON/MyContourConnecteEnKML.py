@@ -46,6 +46,10 @@ DonneesSubdivisees = LoopSubdivision(Input=FormatTriangle)
 DonneesSubdivisees.NumberofSubdivisions = 5
 #DonneesSubdivisees.NumberofSubdivisions = 0
 
+print("<TimeStamp>")
+print("  <when> ICILADATEDELAPREVISION </when>")
+print("</TimeStamp>")
+
 # PREPARATION DU FILTRE CONTOUR
 CourbesDeContour = Contour(Input=DonneesSubdivisees)
 CourbesDeContour.ContourBy = ['POINTS', 'TMP_2maboveground']

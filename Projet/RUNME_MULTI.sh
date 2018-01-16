@@ -111,7 +111,7 @@ do
         echo "=== AJOUT DES COURBES ISOVALEUR"
         echo
 
-      	pvpython PYTHON/MyContourConnecteEnKML.py DATA/$NomDuFichierMeteoFrance.nc >> tmp.kml
+      	pvpython PYTHON/MyContourConnecteEnKML.py DATA/$NomDuFichierMeteoFrance.nc | sed "s/ICILADATEDELAPREVISION/$DateDeLaPrevision/g" >> tmp.kml
       	rc=$?
       	if ! [ $rc == 0 ]; then
       		echo "LES CONTOURS N ONT PAS PU ETRE CALCULES PAR PARAVIEW"
