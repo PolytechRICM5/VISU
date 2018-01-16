@@ -206,4 +206,5 @@ SetActiveSource(streamTracer1)
 
 
 # SAUVE UNE COPIE D ECRAN DANS UN FICHIER PNG
-WriteImage(sys.argv[1]+".png")
+# WriteImage(sys.argv[1]+".png")
+SaveScreenshot(sys.argv[1]+".png", TransparentBackground = True)
