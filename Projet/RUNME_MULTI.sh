@@ -29,6 +29,7 @@ do
         fi
 
         DateDeLaPrevision=`python PYTHON/DateDeLaPrevisionAromeHD.py $i`
+        echo $DateDeLaPrevision
         if [ -e  $NomDuFichierMeteoFrance ]; then
 	        mv $NomDuFichierMeteoFrance DATA
         fi
