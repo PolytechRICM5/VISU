@@ -1,12 +1,12 @@
 #!/bin/bash
-if [ "$#" -ne 2 ] && ["$1" -lt "$2" ]; then
+if [ "$#" -ne 2 ] || ["$1" -lt "$2" ]; then
         echo "vous devez donnez une plage horaire a partir du moment actuel pour lequel vous voulez la prevision"
 	echo
 	exit
 else
         # ==================================================================================================
         echo "=== CREATION DU FICHIER KML POUR GOOGLE EARTH"
-        echo
+        echo "$#"
 
         DateDuRun=`python PYTHON/DateDuRunAromeHD.py $1`
 
@@ -106,13 +106,16 @@ do
         echo "=== AJOUT DE L'IMAGE DANS LE FICHIER KML TEMPORAIRE"
         echo
 
-        cat KML/templateKMZ_BODY.kml | sed "s/ICILEFICHIER/$NomDuFichierMeteoFrance.nc.png/g" | sed "s/ICILENOM/RUN_DU_$DateDuRun/g" | sed "s/ICILADATEDELAPREVISION/$DateDeLaPrevision/g" >> tmp.kml
+        DateDeLaFinDePrevision=`echo $DateDeLaPrevision | sed "s/00:00/59:59/g"`
+        echo $DateDeLaFinDePrevision
+
+        cat KML/templateKMZ_BODY.kml | sed "s/ICILEFICHIER/$NomDuFichierMeteoFrance.nc.png/g" | sed "s/ICILENOM/RUN_DU_$DateDuRun/g" | sed "s/ICILADATEDELAPREVISION/$DateDeLaPrevision/g" | sed "s/ICILADATEDELAFINDEPREVISION/$DateDeLaFinDePrevision/g" >> tmp.kml
 
         # ==================================================================================================
         echo "=== AJOUT DES COURBES ISOVALEUR"
         echo
 
-      	pvpython PYTHON/MyContourConnecteEnKML.py DATA/$NomDuFichierMeteoFrance.nc | sed "s/ICILADATEDELAPREVISION/$DateDeLaPrevision/g" >> tmp.kml
+      	pvpython PYTHON/MyContourConnecteEnKML.py DATA/$NomDuFichierMeteoFrance.nc | sed "s/ICILADATEDELAPREVISION/$DateDeLaPrevision/g" | sed "s/ICILADATEDELAFINDEPREVISION/$DateDeLaFinDePrevision/g" >> tmp.kml
       	rc=$?
       	if ! [ $rc == 0 ]; then
       		echo "LES CONTOURS N ONT PAS PU ETRE CALCULES PAR PARAVIEW"
